@@ -8,7 +8,7 @@ export default function FeaturedProjects() {
     <section id="projects" className="py-16 sm:py-20 lg:py-28" style={{background:"var(--bg2)"}} ref={ref}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={"reveal "+(visible?"in":"")}><p className="section-label">02. Projects</p><h2 className="section-title">Featured Work</h2></div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 items-start">
           {config.featuredProjects.map((proj,i)=>{
             const isOpen=expanded===i;
             return (
