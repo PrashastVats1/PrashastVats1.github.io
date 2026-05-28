@@ -1,7 +1,7 @@
 const post = {
   slug: "youre-not-paying-for-ai-youre-subsidizing-it",
   title: "You're Not Paying for AI. You're Subsidizing It.",
-  date: "March 2025", readTime: "4 min read", tag: "AI",
+  date: "March 2026", readTime: "4 min read", tag: "AI",
   excerpt: "My Claude subscription costs $20/month. The actual compute cost? Significantly higher. That gap isn't a coincidence — it's a strategy. And it's starting to show cracks.",
   content: [
     {type:"image",src:"/images/ai-subsidy.jpeg",alt:"Venture capital funnel showing billions in investments subsidizing $20/month AI subscriptions"},

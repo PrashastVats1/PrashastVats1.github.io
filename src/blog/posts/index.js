@@ -6,5 +6,5 @@ import aiSubsidy            from "./youre-not-paying-for-ai";
 import vibeCoding           from "./vibe-coding-isnt-magic";
 import storiesLikeThese     from "./stories-like-these";
 
-const posts = [cookiesAndSoftware, promptEngineering, loopTightening, aiSubsidy, vibeCoding, storiesLikeThese];
+const posts = [loopTightening, aiSubsidy, cookiesAndSoftware, promptEngineering, vibeCoding, storiesLikeThese];
 export default posts;

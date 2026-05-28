@@ -1,7 +1,7 @@
 const post = {
   slug: "the-loop-is-tightening",
   title: "The Loop Is Tightening. And You're Inside It.",
-  date: "April 2025", readTime: "3 min read", tag: "AI",
+  date: "April 2026", readTime: "3 min read", tag: "AI",
   excerpt: "Nvidia invested in OpenAI. OpenAI buys Nvidia chips. Amazon funds Anthropic, Anthropic pays Amazon for cloud. The money moves in a loop — and patience is running out.",
   content: [
     {type:"image",src:"/images/loop-tightening.jpeg",alt:"Bloomberg visualization showing circular investment flows between major AI companies"},
