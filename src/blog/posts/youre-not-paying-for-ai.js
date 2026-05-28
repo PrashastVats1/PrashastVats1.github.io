@@ -4,7 +4,7 @@ const post = {
   date: "March 2025", readTime: "4 min read", tag: "AI",
   excerpt: "My Claude subscription costs $20/month. The actual compute cost? Significantly higher. That gap isn't a coincidence — it's a strategy. And it's starting to show cracks.",
   content: [
-    {type:"image",src:"/images/ai-subsidy.png",alt:"Venture capital funnel showing billions in investments subsidizing $20/month AI subscriptions"},
+    {type:"image",src:"/images/ai-subsidy.jpeg",alt:"Venture capital funnel showing billions in investments subsidizing $20/month AI subscriptions"},
     {type:"paragraph",text:"I use AI tools daily. This article was drafted by me, then edited with AI assistance. That's exactly why I think about this carefully."},
     {type:"paragraph",text:"My Claude subscription costs $20/month. The actual compute cost? Significantly higher. That gap isn't a coincidence. It's a strategy. And it's starting to show cracks."},
     {type:"heading",text:"The land grab nobody talks about"},

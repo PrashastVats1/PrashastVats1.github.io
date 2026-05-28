@@ -4,7 +4,7 @@ const post = {
   date: "August 2024", readTime: "4 min read", tag: "AI",
   excerpt: "Three weeks. Zero Python fluency. One ML model deployed. How I used ChatGPT not as a code generator, but as a structured learning partner — and what came out of it.",
   content: [
-    {type:"image",src:"/images/stories-ai.png",alt:"AI and human brain connection — illustration of AI as a learning accelerator"},
+    {type:"image",src:"/images/stories-ai.jpeg",alt:"AI and human brain connection — illustration of AI as a learning accelerator"},
     {type:"paragraph",text:"\"I built my first app with ChatGPT.\" \"AI helped me crack my first data science project.\" \"I learned Python in 30 days with zero prior experience.\""},
     {type:"paragraph",text:"Stories like these are everywhere. And honestly? That's a good thing. It shows that more and more developers are tapping into AI to accelerate their learning journeys. I wanted to share my own version — not because it's wildly different, but because it's personal."},
     {type:"paragraph",text:"For developers in structured MNC environments, where fast-paced, hands-on learning may not always be the norm, such stories often serve as an inspiration while being relatable. The drive to grow often comes down to individual curiosity and how creatively you use the tools available to you."},

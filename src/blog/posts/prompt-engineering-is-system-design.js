@@ -4,6 +4,7 @@ const post = {
   date: "February 2026", readTime: "4 min read", tag: "AI",
   excerpt: "Most prompt advice focuses on clever wording. What actually works: treating prompts like specifications and applying the same principles we use when designing software.",
   content: [
+    {type:"image",src:"/images/prompt-engineering.jpeg",alt:"Prompt Engineering Isn't Magic — It's System Design: Chatting with AI vs Designing with AI"},
     {type:"paragraph",text:"Prompt engineering is often treated like a magic trick. Write the right sentence and you'll get the perfect answer. What I've learned is that this mindset breaks the moment you try to use AI in real workflows."},
     {type:"heading",text:"What is a prompt, really?"},
     {type:"paragraph",text:"A prompt is not a conversation — it's closer to a specification. If your prompts are vague, overloaded, or inconsistent, the output will be too. Just like unclear requirements in software often lead to incomplete or poor systems."},

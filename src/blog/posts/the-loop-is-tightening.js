@@ -4,7 +4,7 @@ const post = {
   date: "April 2025", readTime: "3 min read", tag: "AI",
   excerpt: "Nvidia invested in OpenAI. OpenAI buys Nvidia chips. Amazon funds Anthropic, Anthropic pays Amazon for cloud. The money moves in a loop — and patience is running out.",
   content: [
-    {type:"image",src:"/images/loop-tightening.png",alt:"Bloomberg visualization showing circular investment flows between major AI companies"},
+    {type:"image",src:"/images/loop-tightening.jpeg",alt:"Bloomberg visualization showing circular investment flows between major AI companies"},
     {type:"paragraph",text:"Last week I wrote about how AI subscriptions are priced below cost. This week: where the money comes from. And what happens when the people supplying it want it back."},
     {type:"heading",text:"The circle nobody wants to name"},
     {type:"paragraph",text:"Nvidia invested up to $100 billion in OpenAI. OpenAI uses that to buy Nvidia chips. Amazon and Google committed up to $15 billion in Anthropic, which pays them back for cloud computing. SoftBank invested $30 billion in OpenAI and committed $3 billion annually to deploy OpenAI across its portfolio. Investor and customer, simultaneously."},
