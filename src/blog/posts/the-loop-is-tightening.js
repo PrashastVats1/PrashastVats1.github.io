@@ -1,0 +1,27 @@
+const post = {
+  slug: "the-loop-is-tightening",
+  title: "The Loop Is Tightening. And You're Inside It.",
+  date: "April 2025", readTime: "3 min read", tag: "AI",
+  excerpt: "Nvidia invested in OpenAI. OpenAI buys Nvidia chips. Amazon funds Anthropic, Anthropic pays Amazon for cloud. The money moves in a loop — and patience is running out.",
+  content: [
+    {type:"image",src:"/images/loop-tightening.png",alt:"Bloomberg visualization showing circular investment flows between major AI companies"},
+    {type:"paragraph",text:"Last week I wrote about how AI subscriptions are priced below cost. This week: where the money comes from. And what happens when the people supplying it want it back."},
+    {type:"heading",text:"The circle nobody wants to name"},
+    {type:"paragraph",text:"Nvidia invested up to $100 billion in OpenAI. OpenAI uses that to buy Nvidia chips. Amazon and Google committed up to $15 billion in Anthropic, which pays them back for cloud computing. SoftBank invested $30 billion in OpenAI and committed $3 billion annually to deploy OpenAI across its portfolio. Investor and customer, simultaneously."},
+    {type:"paragraph",text:"The money moves in a loop. Each company's valuation depends on contracts with companies that depend on them right back. Bloomberg mapped this — a solar system where every planet orbits every other at once."},
+    {type:"paragraph",text:"Analysts at Bernstein Research flagged it: circular deals give investors an inflated perception of true demand. OpenAI signed a $300 billion cloud deal with Oracle, $90 billion with AMD, and $38 billion with AWS — while being funded by those same players. Amazon, Google, Meta and Microsoft's combined free cash flow is projected to shrink 43% between late 2024 and early 2026. Spending is real. Returns aren't guaranteed."},
+    {type:"paragraph",text:"In past tech bubbles, revenue roundtripping made corrections worse. There is no reason to assume this time is any different."},
+    {type:"heading",text:"Patience is running out"},
+    {type:"paragraph",text:"Shareholders accepted losses for growth narratives for years. That window is closing."},
+    {type:"paragraph",text:"OpenAI projects $14 billion in losses in 2026 alone, profitability not expected until 2029. When Nvidia announced it would reinvest capital into the ecosystem instead of returning it to shareholders, the market punished them immediately."},
+    {type:"paragraph",text:"Patience is turning into pressure. When investors expect returns, the first place that pressure lands is pricing."},
+    {type:"heading",text:"Who gets squeezed first?"},
+    {type:"paragraph",text:"It will be the power users — not the casuals. The ones paying for subscriptions and depending on these tools daily. When investor patience runs out, the gap closes first on the people consuming the most."},
+    {type:"heading",text:"The exit positions are not equal"},
+    {type:"paragraph",text:"Not all AI products face the same correction. Claude Code, GitHub Copilot, Gemini — they are all playing the AWS game. Not competing on quality, but embedding deep enough into your workflow that leaving costs more than a price increase. Switching costs are the moat."},
+    {type:"paragraph",text:"The companies that survive won't have the best models. They'll have the highest switching costs. Ask which category your tools fall into."},
+    {type:"heading",text:"What to do"},
+    {type:"paragraph",text:"For every AI tool you use daily, ask: if the price doubled tomorrow, would you pay it or leave? That answer tells you how locked in you already are."},
+  ],
+};
+export default post;
