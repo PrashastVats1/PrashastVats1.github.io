@@ -26,6 +26,11 @@ export default function FeaturedProjects() {
                     <div><p className="font-mono text-[0.58rem] uppercase tracking-widest mb-2" style={{color:"var(--dim)"}}>Impact</p>
                       <ul className="flex flex-col gap-1.5">{proj.impact.map((item,j)=><li key={j} className="flex items-start gap-2 text-xs sm:text-sm" style={{color:"var(--muted)"}}><span style={{color:"var(--accent)",marginTop:"2px"}}>›</span>{item}</li>)}</ul>
                     </div>
+                    {proj.demo && (
+                      <a href={proj.demo} target="_blank" rel="noopener noreferrer" className="font-mono text-[0.67rem] flex items-center gap-1 transition-colors" style={{color:"var(--accent)"}}>
+                        <span>↗</span> View live project
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

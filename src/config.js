@@ -32,22 +32,6 @@ const config = {
 
   featuredProjects: [
     {
-      badge: "🏆 2nd Place — Internal Competition",
-      name: "AI Engineer Onboarding Chatbot",
-      challenge: "New engineers took weeks to learn the internal automation framework, slowing team velocity.",
-      solution: "Built a conversational AI chatbot with script explanation, syntax guidance, and automated code generation.",
-      impact: ["Placed 2nd out of 8 developers in internal competition", "Significantly reduced new engineer ramp-up time", "Adopted for onboarding across the team"],
-      tags: ["Copilot AI", "C#", ".NET", "Prompt Engineering"], github: "", demo: "",
-    },
-    {
-      badge: "💰 Cost Optimisation",
-      name: "Custom Computer Vision Model",
-      challenge: "Cloud AI costs were scaling with usage and the system required internet connectivity for UI detection.",
-      solution: "Trained a custom ResNet + FAISS model to identify UI elements in enterprise interfaces — fully on-premise.",
-      impact: ["Eliminated per-request cloud AI costs entirely", "Works fully offline with no external dependencies", "Integrated into production automation workflows"],
-      tags: ["Python", "ResNet", "FAISS", "Computer Vision", "Docker"], github: "", demo: "",
-    },
-    {
       badge: "🚧 In Progress — CI/CD + AI",
       name: "DocuChat — Resume Intelligence Pipeline",
       challenge: "Generic resume advice is everywhere. Engineers need context-aware feedback that understands their specific stack and experience, delivered through a proper CI/CD workflow.",
@@ -57,15 +41,31 @@ const config = {
         "RAG architecture for context-aware resume analysis",
         "Demonstrates CI/CD and AI integration in one project",
       ],
-      tags: ["Jenkins", "Python", "RAG", "CI/CD", "AI"], github: "", demo: "",
+      tags: ["Jenkins", "Python", "RAG", "CI/CD", "AI"], github: "", demo: "https://resume-analyzer-laqi.onrender.com/",
     },
     {
-      badge: "🔧 Internal Tool",
-      name: "Network Printer Diagnostic Tool",
-      challenge: "Diagnosing and upgrading firmware across a fleet of network printers was slow and manual.",
-      solution: "Built a full-stack .NET MVC web app to scan, diagnose, and visualise printer states with automated firmware upgrades.",
-      impact: ["Automated previously manual diagnostics workflow", "Visualised printer fleet state in real time", "Reduced firmware upgrade time significantly"],
-      tags: [".NET MVC", "C#", "Selenium", "SQL Server"], github: "", demo: "",
+      badge: "🤖 AI + Real-Time Data",
+      name: "AI Event Intelligence App",
+      challenge: "Staying on top of relevant tech events, meetups, and conferences requires constant manual searching across multiple platforms.",
+      solution: "Built an AI-powered app that aggregates, filters, and surfaces tech events based on interest areas, with intelligent recommendations.",
+      impact: [
+        "Aggregates events across multiple sources into one view",
+        "AI-driven filtering surfaces the most relevant events",
+        "Deployed and live on Vercel",
+      ],
+      tags: ["AI", "React", "Vercel", "Event Discovery"], github: "", demo: "https://ai-event-intelligence.vercel.app",
+    },
+    {
+      badge: "📱 React Native",
+      name: "Movie Discovery App",
+      challenge: "Building a real-world mobile app to apply React Native skills beyond tutorials — including navigation, API integration, and custom UI.",
+      solution: "Extended a React Native movie app with additional features: custom components, improved UX, and real TMDB API data.",
+      impact: [
+        "Applied React Native fundamentals in a real deployed project",
+        "Integrated live movie data via API",
+        "Deployed and accessible via Vercel",
+      ],
+      tags: ["React Native", "JavaScript", "REST API", "Mobile"], github: "", demo: "https://movie-app-react-native-project.vercel.app/",
     },
   ],
 
