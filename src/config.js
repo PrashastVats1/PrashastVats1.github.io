@@ -32,6 +32,19 @@ const config = {
 
   featuredProjects: [
     {
+      badge: "🎙 Voice AI · SIP Telephony",
+      name: "Vedantu Voice Jam — Priya AI Sales Agent",
+      challenge: "Vedantu's post-demo follow-up calls were done manually by counselors — slow, inconsistent, and hard to scale. Converting parents after a child's demo class requires real-time objection handling in Hindi.",
+      solution: "Built an AI voice agent (Priya) that autonomously calls parents after demo classes, handles objections in Hindi/English, and guides them toward enrollment — backed by a live analytics dashboard tracking every call outcome.",
+      impact: [
+        "Outbound SIP calls to real phone numbers via Retell + Vobiz telephony",
+        "Hindi voice agent handling price, competitor, and interest objections in real-time",
+        "Live dashboard tracking enrollment rate, objections breakdown, and sentiment analysis",
+        "Full webhook pipeline logging call outcomes automatically post-conversation",
+      ],
+      tags: ["Python", "FastAPI", "Retell AI", "React", "Vite", "SIP/PSTN", "Render"], github: "", demo: "https://voice-agent-nubn.onrender.com/",
+    },
+    {
       badge: "🚧 In Progress — CI/CD + AI",
       name: "DocuChat — Resume Intelligence Pipeline",
       challenge: "Generic resume advice is everywhere. Engineers need context-aware feedback that understands their specific stack and experience, delivered through a proper CI/CD workflow.",
