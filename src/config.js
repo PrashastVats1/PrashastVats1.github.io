@@ -32,10 +32,10 @@ const config = {
 
   featuredProjects: [
     {
-      badge: "🎙 Voice AI · SIP Telephony",
-      name: "Vedantu Voice Jam — Priya AI Sales Agent",
-      challenge: "Vedantu's post-demo follow-up calls were done manually by counselors — slow, inconsistent, and hard to scale. Converting parents after a child's demo class requires real-time objection handling in Hindi.",
-      solution: "Built an AI voice agent (Priya) that autonomously calls parents after demo classes, handles objections in Hindi/English, and guides them toward enrollment — backed by a live analytics dashboard tracking every call outcome.",
+      badge: "🏆 Hackathon Project · Voice AI",
+      name: "Priya — AI Voice Sales Agent",
+      challenge: "Post-demo follow-up calls require real-time objection handling in Hindi — manual counselor calls are slow, inconsistent, and hard to scale.",
+      solution: "Built an AI voice agent that autonomously calls parents after demo classes, handles objections in Hindi/English, and guides them toward enrollment — backed by a live analytics dashboard.",
       impact: [
         "Outbound SIP calls to real phone numbers via Retell + Vobiz telephony",
         "Hindi voice agent handling price, competitor, and interest objections in real-time",
@@ -45,7 +45,7 @@ const config = {
       tags: ["Python", "FastAPI", "Retell AI", "React", "Vite", "SIP/PSTN", "Render"], github: "", demo: "https://voice-agent-nubn.onrender.com/",
     },
     {
-      badge: "🚧 In Progress — CI/CD + AI",
+      badge: "⚙️ CI/CD + AI",
       name: "DocuChat — Resume Intelligence Pipeline",
       challenge: "Generic resume advice is everywhere. Engineers need context-aware feedback that understands their specific stack and experience, delivered through a proper CI/CD workflow.",
       solution: "Building a Jenkins CI/CD pipeline with a RAG-based AI layer that ingests resumes, understands the engineer's background, and has an intelligent conversation about skill gaps and upskilling paths.",
