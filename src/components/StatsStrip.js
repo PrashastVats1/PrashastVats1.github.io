@@ -1,10 +1,10 @@
 import React from "react";
 import { useInView } from "../hooks/useInView";
 const STATS = [
-  { value:"3",  suffix:"+", label:"Projects in\nproduction" },
+  { value:"4",  suffix:"+", label:"Projects in\nproduction" },
   { value:"80", suffix:"%", label:"First-contact\nresolution rate" },
   { value:"30", suffix:"+", label:"Engineers\nsupported daily" },
-  { value:"20", suffix:"%", label:"Faster client\nworkflows delivered" },
+  { value:"0",  suffix:"",  label:"False positives\nacross 7 sites" },
 ];
 export default function StatsStrip() {
   const [ref, visible] = useInView();

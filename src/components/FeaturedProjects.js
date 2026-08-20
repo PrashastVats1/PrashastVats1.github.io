@@ -19,11 +19,18 @@ export default function FeaturedProjects() {
                   <button onClick={()=>setExpanded(isOpen?null:i)} className="text-left font-mono flex items-center gap-1.5 transition-colors bg-transparent border-0 p-0" style={{fontSize:"0.67rem",color:isOpen?"var(--accent)":"var(--dim)"}}>
                     <span style={{display:"inline-block",transition:"transform 0.3s",transform:isOpen?"rotate(90deg)":"none"}}>▸</span>{isOpen?"Hide details":"View details"}
                   </button>
-                  {proj.demo && (
-                    <a href={proj.demo} target="_blank" rel="noopener noreferrer" className="font-mono text-[0.67rem] flex items-center gap-1 transition-colors" style={{color:"var(--accent)"}}>
-                      <span>↗</span> Live project
-                    </a>
-                  )}
+                  <div className="flex items-center gap-3">
+                    {proj.github && (
+                      <a href={proj.github} target="_blank" rel="noopener noreferrer" className="font-mono text-[0.67rem] flex items-center gap-1 transition-colors" style={{color:"var(--dim)"}}>
+                        <span>{"{}"}</span> Code
+                      </a>
+                    )}
+                    {proj.demo && (
+                      <a href={proj.demo} target="_blank" rel="noopener noreferrer" className="font-mono text-[0.67rem] flex items-center gap-1 transition-colors" style={{color:"var(--accent)"}}>
+                        <span>↗</span> Live project
+                      </a>
+                    )}
+                  </div>
                 </div>
                 <div className="overflow-hidden transition-all duration-300" style={{maxHeight:isOpen?"500px":"0",opacity:isOpen?1:0}}>
                   <div className="px-4 sm:px-5 pb-5 pt-4 flex flex-col gap-4" style={{borderTop:"1px solid var(--border)"}}>

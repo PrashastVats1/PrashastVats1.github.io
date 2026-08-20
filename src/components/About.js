@@ -9,8 +9,8 @@ export default function About() {
         <div className={"reveal "+(visible?"in":"")}><p className="section-label">01. About</p><h2 className="section-title">A bit about me</h2></div>
         <div className="grid grid-cols-1 md:grid-cols-[1fr_280px] lg:grid-cols-[1fr_300px] gap-10 lg:gap-14 items-start">
           <div className={"reveal "+(visible?"in":"")+" [transition-delay:0.1s]"}>
-            <p className="leading-[1.9] text-sm sm:text-base mb-5" style={{color:"var(--muted)"}}>I'm a Software Engineer at Mphasis with 2+ years of experience delivering technical solutions for international clients. My work spans plugin development, firmware test automation, full-stack tooling, and hands-on client support across multiple time zones.</p>
-            <p className="leading-[1.9] text-sm sm:text-base mb-8" style={{color:"var(--muted)"}}>I enjoy bridging technical complexity with clear communication — whether that's resolving a tricky ticket, shipping an AI model, or building a tool that makes a team's day dramatically smoother.</p>
+            <p className="leading-[1.9] text-sm sm:text-base mb-5" style={{color:"var(--muted)"}}>I'm a Software Engineer at Mphasis with 3+ years shipping end-to-end products — from enterprise .NET and React work on HP's global printing division to independently built and deployed AI services running in production. Python and TypeScript first, with a habit of building the measurement layer alongside whatever I ship.</p>
+            <p className="leading-[1.9] text-sm sm:text-base mb-8" style={{color:"var(--muted)"}}>Outside of work I build and ship solo — a prompt-injection detector published to the Chrome Web Store, a delegated-authority gateway for AI agents, a voice agent that won a hackathon against team entries. I enjoy bridging technical complexity with clear communication, whether that's resolving a tricky ticket or shipping a tool a team uses every day.</p>
             <div className="flex flex-col gap-2 mb-8">
               {[{label:"Location",value:config.location,href:null},{label:"Email",value:config.email,href:"mailto:"+config.email},{label:"Phone",value:config.phone,href:"tel:"+config.phone},{label:"GitHub",value:config.github.replace("https://github.com/","@"),href:config.github},...(config.linkedin?[{label:"LinkedIn",value:"View Profile",href:config.linkedin}]:[])].map(d=>(
                 <div key={d.label} className="flex items-center gap-4 px-4 py-2.5 rounded-xl" style={{background:"var(--surface)",border:"1px solid var(--border)"}}>
@@ -32,7 +32,7 @@ export default function About() {
                 <p className="font-sans font-bold text-base sm:text-lg" style={{color:"var(--text)"}}>{config.name}</p>
                 <p className="font-mono text-[0.68rem] mt-1" style={{color:"var(--accent)"}}>{config.title}</p>
               </div>
-              <div className="flex flex-wrap gap-2 justify-center">{["C#",".NET","React","Angular","SQL","Python"].map(t=><span key={t} className="pill">{t}</span>)}</div>
+              <div className="flex flex-wrap gap-2 justify-center">{["Python","TypeScript","React","FastAPI","C#",".NET"].map(t=><span key={t} className="pill">{t}</span>)}</div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full animate-pulse-glow" style={{background:"#4ade80",boxShadow:"0 0 8px #4ade80"}}/>
                 <span className="font-mono text-[0.65rem]" style={{color:"var(--muted)"}}>Open to opportunities</span>
