@@ -19,7 +19,7 @@ export default function Contact() {
         <div className={"reveal "+(visible?"in":"")}><p className="section-label">06. Contact</p><h2 className="section-title">Let's Build Something</h2></div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
           <div className={"reveal-l "+(visible?"in":"")+" [transition-delay:0.1s]"}>
-            <p className="leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base" style={{color:"var(--muted)"}}>I enjoy solving interesting problems — AI, automation, or tools that make teams more productive. Have an idea? Want to collaborate? Or just want to say hi? Drop me a line.</p>
+            <p className="leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base" style={{color:"var(--muted)"}}>I enjoy solving interesting problems, AI, automation, or tools that make teams more productive. Have an idea? Want to collaborate? Or just want to say hi? Drop me a line.</p>
             <a href={`https://mail.google.com/mail/?view=cm&to=${config.email}`} target="_blank" rel="noreferrer"
                className="inline-flex items-center gap-2 font-mono px-5 sm:px-6 py-3 rounded-lg transition-all duration-200"
                style={{fontSize:"0.78rem",border:"1px solid var(--accent2)",color:"var(--accent2)"}}

@@ -11,7 +11,7 @@ export default function QuoteStrip() {
         <div className={"reveal " + (visible ? "in" : "")}>
           <p className="font-sans font-bold leading-relaxed mb-6" style={{ fontSize:"clamp(1.1rem,2.5vw,1.5rem)", color:"var(--text)" }}>
             "Want to talk about AI, automation, or building tools that actually get used?
-            Over a coffee — virtual or otherwise — just say hello."
+            Over a coffee, virtual or otherwise, just say hello."
           </p>
           <div className="flex items-center justify-center gap-3">
             <div className="w-8 h-px" style={{ background:"var(--accent)", opacity:0.5 }} />

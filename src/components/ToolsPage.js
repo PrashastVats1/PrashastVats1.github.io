@@ -39,7 +39,7 @@ async function callOpenAI(apiKey, systemPrompt, userContent) {
   return data.choices[0].message.content.trim();
 }
 
-/* ── API Key input — only shown if no env key is configured ── */
+/* ── API Key input, only shown if no env key is configured ── */
 function ApiKeyInput({ apiKey, setApiKey }) {
   const [show, setShow] = useState(false);
   // If env key is set, show a small status pill instead of the full input
@@ -58,7 +58,7 @@ function ApiKeyInput({ apiKey, setApiKey }) {
          style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
       <div className="flex items-center justify-between">
         <span className="font-mono text-[0.65rem] uppercase tracking-widest" style={{ color: "var(--dim)" }}>
-          OpenAI API Key — required for AI-powered tools
+          OpenAI API Key - required for AI-powered tools
         </span>
         <span className="font-mono text-[0.6rem]" style={{ color: apiKey ? "#4ade80" : "var(--accent2)" }}>
           {apiKey ? "✓ Key set" : "Not set"}
@@ -116,7 +116,7 @@ First, detect the intent of the prompt: code generation, summarization, data ext
 
 Score strictly on these five dimensions:
 1. Clarity (is the task unambiguous?)
-2. Constraints (are boundaries explicit — what to do AND what not to do?)
+2. Constraints (are boundaries explicit - what to do AND what not to do?)
 3. Context (does the model have enough background to succeed?)
 4. Output spec (is the expected format/length/style defined?)
 5. Single responsibility (is it one task, not five?)
@@ -126,12 +126,12 @@ Return ONLY a JSON object with no markdown, no code fences:
   "score": <integer 1-10>,
   "intent": "<detected intent: code_generation / summarization / data_extraction / classification / creative / qa / other>",
   "label": "<one of: Weak / Needs Work / Decent / Strong / Excellent>",
-  "issues": ["<specific, actionable issue — e.g. 'No output format specified' not 'Be more specific'>", ...],
+  "issues": ["<specific, actionable issue - e.g. 'No output format specified' not 'Be more specific'>", ...],
   "improvements": ["<concrete fix with example wording where possible>", ...],
-  "rewritten": "<improved version that addresses all issues — keep the original intent intact>"
+  "rewritten": "<improved version that addresses all issues, keeping the original intent intact>"
 }
 
-Scoring: 1-2 = vague one-liner with no constraints, 3-4 = has a task but missing constraints/output spec, 5-6 = structured but has gaps, 7-8 = constrained, context-aware, output-specified, 9-10 = production-grade, single-responsibility, fully specified. Be strict — most prompts score 4-6. Max 3 issues, max 3 improvements.`;
+Scoring: 1-2 = vague one-liner with no constraints, 3-4 = has a task but missing constraints/output spec, 5-6 = structured but has gaps, 7-8 = constrained, context-aware, output-specified, 9-10 = production-grade, single-responsibility, fully specified. Be strict. Most prompts score 4-6. Max 3 issues, max 3 improvements.`;
 
   const analyze = async () => {
     if (!prompt.trim()) return;
@@ -276,7 +276,7 @@ function CodeReviewRater({ apiKey }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const SYSTEM = `You are a senior software engineer with 10+ years of experience doing code reviews across C#, Python, JavaScript, TypeScript, Java, and Go. You give direct, specific feedback — not generic advice.
+  const SYSTEM = `You are a senior software engineer with 10+ years of experience doing code reviews across C#, Python, JavaScript, TypeScript, Java, and Go. You give direct, specific feedback, not generic advice.
 
 Step 1: Detect the language. Apply language-specific conventions:
 - C# / .NET: PascalCase for methods/classes, camelCase for locals, null checks, using statements, LINQ correctness, async/await patterns, no magic strings
@@ -296,9 +296,9 @@ Return ONLY a JSON object with no markdown, no code fences:
   "readability": <integer 1-10>,
   "robustness": <integer 1-10>,
   "overall": <integer 1-10>,
-  "issues": ["<specific issue with line reference if possible — e.g. 'Variable x on line 3 is a single letter — rename to index or counter'>", ...],
+  "issues": ["<specific issue with line reference if possible - e.g. 'Variable x on line 3 is a single letter, rename to index or counter'>", ...],
   "positives": ["<something genuinely done well>", ...],
-  "suggestion": "<the single most impactful change — be specific about what to do and why>"
+  "suggestion": "<the single most impactful change, be specific about what to do and why>"
 }
 
 Be strict. A score of 7+ means production-ready. Most snippets score 4-6. overall = Math.round((naming + readability + robustness) / 3). Max 3 issues, max 2 positives.`;
@@ -399,8 +399,8 @@ function TechStackAdvisor() {
     if (type === "mobile") return { frontend: ["React Native", "Expo"], backend: ["Node.js", "Express"], db: ["Firebase", "SQLite"], note: "React Native gives you one codebase for iOS & Android. Expo speeds up setup significantly." };
     if (type === "api") return { frontend: ["Swagger / OpenAPI (docs)"], backend: ["FastAPI (Python)", "or .NET Web API (your strength)"], db: ["PostgreSQL"], note: "FastAPI gives you auto-generated docs and pairs well with your Python/AI work. .NET Web API if you want to leverage C#." };
     if (priority === "scale" && scale === "large") return { frontend: ["React", "Next.js"], backend: ["Go", "or .NET Core"], db: ["PostgreSQL", "Redis (cache)"], note: "Go/Postgres is battle-tested at high scale. Add Redis for caching hot queries. .NET Core is also a strong choice here." };
-    if (team === "solo" && priority === "speed") return { frontend: ["React", "Vite"], backend: ["Node.js + Express", "or .NET Core (your strength)"], db: ["SQLite", "or MongoDB"], note: "You already know .NET — leverage it. React + Vite for the frontend. SQLite for prototyping, swap later." };
-    return { frontend: ["React", "TypeScript"], backend: [".NET Core", "C# (your strength)"], db: ["SQL Server", "or PostgreSQL"], note: "Your existing stack — lean into it. Strong for maintainability and familiar territory." };
+    if (team === "solo" && priority === "speed") return { frontend: ["React", "Vite"], backend: ["Node.js + Express", "or .NET Core (your strength)"], db: ["SQLite", "or MongoDB"], note: "You already know .NET. Leverage it. React + Vite for the frontend. SQLite for prototyping, swap later." };
+    return { frontend: ["React", "TypeScript"], backend: [".NET Core", "C# (your strength)"], db: ["SQL Server", "or PostgreSQL"], note: "Your existing stack. Lean into it. Strong for maintainability and familiar territory." };
   };
 
   const stack = getStack();
@@ -445,35 +445,35 @@ function RegexExplainer() {
   const [result, setResult] = useState(null);
 
   const PATTERNS = [
-    [/^\^/, "^ — anchors match at the start of the string"],
-    [/\$$/, "$ — anchors match at the end of the string"],
-    [/\\d\+/, "\\d+ — matches one or more digits (0-9)"],
-    [/\\d\*/, "\\d* — matches zero or more digits"],
-    [/\\d\?/, "\\d? — matches an optional single digit"],
-    [/\\d(?!\+|\*|\?)/, "\\d — matches any single digit (0-9)"],
-    [/\\w\+/, "\\w+ — matches one or more word characters (letters, digits, underscore)"],
-    [/\\w(?!\+|\*|\?)/, "\\w — matches any word character"],
-    [/\\s/, "\\s — matches any whitespace (space, tab, newline)"],
-    [/\\S/, "\\S — matches any non-whitespace character"],
-    [/\\\\./, "\\. — matches a literal dot (escaped)"],
-    [/\.\+/, ".+ — matches one or more of any character except newline"],
-    [/\.\*/, ".* — matches zero or more of any character"],
-    [/\[\^/, "[^ — negated character class: matches anything NOT listed inside the brackets"],
-    [/\(\?:/, "(?:...) — non-capturing group: groups without saving the match"],
-    [/\(\?=/, "(?=...) — lookahead: matches if followed by this pattern"],
-    [/\(\?!/, "(?!...) — negative lookahead: matches if NOT followed by this pattern"],
-    [/\((?!\?)[^)]*\)/, "(...) — capturing group: saves the matched text for backreference"],
-    [/\|/, "| — alternation (OR): matches the expression on either side"],
-    [/\{[\d,]+\}/, "{n,m} — quantifier: specifies exact count or min/max repetitions"],
-    [/\[a-z\]/, "[a-z] — matches any lowercase letter a through z"],
-    [/\[A-Z\]/, "[A-Z] — matches any uppercase letter A through Z"],
-    [/\[0-9\]/, "[0-9] — matches any digit 0 through 9"],
-    [/\\b(?!a-z)/, "\\b — word boundary: position between a word char and a non-word char"],
-    [/\?(?!\?|=|!)/, "? — makes the preceding element optional (zero or one occurrence)"],
-    [/\+(?!\?)/, "+ — one or more of the preceding element"],
-    [/\*(?!\?)/, "* — zero or more of the preceding element"],
-    [/\^(?=\[)/, "^ inside [...] — negates the character class"],
-    [/\\./, "\\ — escape character: treats next char as literal"],
+    [/^\^/, "^ - anchors match at the start of the string"],
+    [/\$$/, "$ - anchors match at the end of the string"],
+    [/\\d\+/, "\\d+ - matches one or more digits (0-9)"],
+    [/\\d\*/, "\\d* - matches zero or more digits"],
+    [/\\d\?/, "\\d? - matches an optional single digit"],
+    [/\\d(?!\+|\*|\?)/, "\\d - matches any single digit (0-9)"],
+    [/\\w\+/, "\\w+ - matches one or more word characters (letters, digits, underscore)"],
+    [/\\w(?!\+|\*|\?)/, "\\w - matches any word character"],
+    [/\\s/, "\\s - matches any whitespace (space, tab, newline)"],
+    [/\\S/, "\\S - matches any non-whitespace character"],
+    [/\\\\./, "\\. - matches a literal dot (escaped)"],
+    [/\.\+/, ".+ - matches one or more of any character except newline"],
+    [/\.\*/, ".* - matches zero or more of any character"],
+    [/\[\^/, "[^ - negated character class: matches anything NOT listed inside the brackets"],
+    [/\(\?:/, "(?:...) - non-capturing group: groups without saving the match"],
+    [/\(\?=/, "(?=...) - lookahead: matches if followed by this pattern"],
+    [/\(\?!/, "(?!...) - negative lookahead: matches if NOT followed by this pattern"],
+    [/\((?!\?)[^)]*\)/, "(...) - capturing group: saves the matched text for backreference"],
+    [/\|/, "| - alternation (OR): matches the expression on either side"],
+    [/\{[\d,]+\}/, "{n,m} - quantifier: specifies exact count or min/max repetitions"],
+    [/\[a-z\]/, "[a-z] - matches any lowercase letter a through z"],
+    [/\[A-Z\]/, "[A-Z] - matches any uppercase letter A through Z"],
+    [/\[0-9\]/, "[0-9] - matches any digit 0 through 9"],
+    [/\\b(?!a-z)/, "\\b - word boundary: position between a word char and a non-word char"],
+    [/\?(?!\?|=|!)/, "? - makes the preceding element optional (zero or one occurrence)"],
+    [/\+(?!\?)/, "+ - one or more of the preceding element"],
+    [/\*(?!\?)/, "* - zero or more of the preceding element"],
+    [/\^(?=\[)/, "^ inside [...] - negates the character class"],
+    [/\\./, "\\ - escape character: treats next char as literal"],
   ];
 
   const explain = () => {
@@ -504,8 +504,8 @@ function RegexExplainer() {
       </button>
       {result && (
         <div className="tool-result flex flex-col gap-2">
-          {!result.valid && <div className="text-xs font-mono" style={{ color: "var(--accent2)" }}>⚠ Invalid regex syntax — check for unmatched brackets or escape sequences.</div>}
-          {result.valid && result.parts.length === 0 && <div className="text-xs" style={{ color: "var(--muted)" }}>Basic literal pattern — no special constructs detected. It matches that exact string.</div>}
+          {!result.valid && <div className="text-xs font-mono" style={{ color: "var(--accent2)" }}>⚠ Invalid regex syntax. Check for unmatched brackets or escape sequences.</div>}
+          {result.valid && result.parts.length === 0 && <div className="text-xs" style={{ color: "var(--muted)" }}>Basic literal pattern. No special constructs detected. It matches that exact string.</div>}
           {result.parts.map((p, i) => (
             <div key={i} className="flex items-start gap-2 text-xs">
               <span style={{ color: "var(--accent)", flexShrink: 0, marginTop: "2px" }}>›</span>
@@ -530,7 +530,7 @@ function JiraTicketScorer({ apiKey }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const SYSTEM = `You are a strict engineering manager who has read thousands of JIRA tickets and knows exactly what makes them actionable or not. You do not give benefit of the doubt — you score what is written, not what the author might have meant.
+  const SYSTEM = `You are a strict engineering manager who has read thousands of JIRA tickets and knows exactly what makes them actionable or not. You do not give benefit of the doubt. You score what is written, not what the author might have meant.
 
 Step 1: Detect ticket type from the description:
 - Bug: needs steps to reproduce, expected behavior, actual behavior, environment/version, severity
@@ -542,10 +542,10 @@ Step 2: Score based on ticket type. Apply these checks:
 - hasWho: is the affected user/role/system clearly identified?
 - hasWhat: is the desired outcome or action unambiguous?
 - hasAcceptance: are there explicit acceptance criteria or definition of done? (bullet list, Given/When/Then, or clear pass/fail conditions)
-- hasContext: for bugs — steps to reproduce + expected vs actual; for features — background/motivation; for tasks — why this needs doing
+- hasContext: for bugs - steps to reproduce + expected vs actual; for features - background/motivation; for tasks - why this needs doing
 - hasPriority: is severity/priority stated or clearly implied?
 
-Scoring (be strict — real tickets average 4-5):
+Scoring (be strict - real tickets average 4-5):
 0-2 = unusable (one-liner, no context, cannot be acted on)
 3-4 = poor (missing most of what's needed, engineer would have to ask 3+ questions)
 5-6 = needs work (core idea is there but missing AC or steps or context)
@@ -562,8 +562,8 @@ Return ONLY a JSON object with no markdown, no code fences:
   "hasAcceptance": <boolean>,
   "hasContext": <boolean>,
   "hasPriority": <boolean>,
-  "missing": ["<specific missing element and why an engineer needs it — be direct>", ...],
-  "rewritten": "<rewritten ticket that fills all gaps — use the detected ticket type's format, keep it concise but complete>"
+  "missing": ["<specific missing element and why an engineer needs it, be direct>", ...],
+  "rewritten": "<rewritten ticket that fills all gaps - use the detected ticket type's format, keep it concise but complete>"
 }
 
 Max 3 missing items. The rewritten version must be genuinely better, not just the original with a header added.`;
@@ -658,15 +658,15 @@ Max 3 missing items. The rewritten version must be genuinely better, not just th
 
 /* ── Main page ── */
 export default function ToolsPage() {
-  useSEO("Dev Tools | Prashast Vats", "Interactive developer tools — prompt debugger, git commit formatter, code review rater, and more.");
+  useSEO("Dev Tools | Prashast Vats", "Interactive developer tools, prompt debugger, git commit formatter, code review rater, and more.");
   const [apiKey, setApiKey] = useState("");
 
   const TOOLS = [
     { id: "prompt", title: "Prompt Debugger",      tag: "AI ✦",        ai: true,  desc: "Paste any AI prompt and get a clarity score, specific issues, concrete fixes, and a rewritten version.",       component: <PromptDebugger apiKey={apiKey} /> },
     { id: "commit", title: "Git Commit Formatter",  tag: "Git",         ai: false, desc: "Describe your change and get a properly formatted conventional commit message with type and optional scope.",   component: <GitCommitFormatter /> },
-    { id: "code",   title: "Code Review Rater",     tag: "Code ✦",      ai: true,  desc: "Paste a snippet and get AI scores for naming, readability, and robustness — with specific flags and a top fix.", component: <CodeReviewRater apiKey={apiKey} /> },
+    { id: "code",   title: "Code Review Rater",     tag: "Code ✦",      ai: true,  desc: "Paste a snippet and get AI scores for naming, readability, and robustness, with specific flags and a top fix.", component: <CodeReviewRater apiKey={apiKey} /> },
     { id: "stack",  title: "Tech Stack Advisor",    tag: "Architecture", ai: false, desc: "Answer 4 questions about your project and get a recommended stack with tradeoff notes, tailored to your background.", component: <TechStackAdvisor /> },
-    { id: "regex",  title: "Regex Explainer",       tag: "Dev Tools",   ai: false, desc: "Paste any regex and get a plain-English breakdown of every construct — no more Googling what \\d+ means.",    component: <RegexExplainer /> },
+    { id: "regex",  title: "Regex Explainer",       tag: "Dev Tools",   ai: false, desc: "Paste any regex and get a plain-English breakdown of every construct. No more Googling what \\d+ means.",    component: <RegexExplainer /> },
     { id: "jira",   title: "JIRA Ticket Scorer",    tag: "Process ✦",   ai: true,  desc: "Paste a ticket and get an AI quality score, checklist (who/what/AC/context/priority), and an improved version.", component: <JiraTicketScorer apiKey={apiKey} /> },
   ];
 

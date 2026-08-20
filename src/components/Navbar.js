@@ -67,7 +67,7 @@ export default function Navbar(){
 
   return (
     <>
-      {/* Navbar bar — always on top */}
+      {/* Navbar bar, always on top */}
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0,
         zIndex: 100,
@@ -160,7 +160,7 @@ export default function Navbar(){
         </div>
       </nav>
 
-      {/* Mobile overlay — separate from nav so it sits below the nav bar */}
+      {/* Mobile overlay, separate from nav so it sits below the nav bar */}
       {menuOpen && (
         <div
           className="lg:hidden"

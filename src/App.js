@@ -24,7 +24,7 @@ function PortfolioHome() {
   useEffect(() => {
     document.title = "Prashast Vats | Software Engineer";
     const setMeta = (n,v) => { let el=document.querySelector(`meta[name="${n}"]`); if(!el){el=document.createElement("meta");el.name=n;document.head.appendChild(el);} el.content=v; };
-    setMeta("description","Prashast Vats — Software Engineer at Mphasis. Builds AI tools, automation systems, and full-stack apps.");
+    setMeta("description","Prashast Vats, Software Engineer at Mphasis (HP Inc.). Ships AI agent security tools, voice agents, and full-stack apps.");
   }, []);
   return (
     <>

@@ -10,7 +10,7 @@ export default function MentalModels() {
         <div className={"reveal " + (visible?"in":"") + " text-center mb-12"}>
           <p className="section-label justify-center">How I Think</p>
           <h2 className="section-title" style={{ marginBottom:"0.75rem" }}>Engineering Principles</h2>
-          <p className="text-sm sm:text-base max-w-xl mx-auto" style={{ color:"var(--muted)" }}>Mental models I apply consistently — to code, to prompts, to problems.</p>
+          <p className="text-sm sm:text-base max-w-xl mx-auto" style={{ color:"var(--muted)" }}>Mental models I apply consistently, to code, to prompts, to problems.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {config.mentalModels.map((m, i) => (

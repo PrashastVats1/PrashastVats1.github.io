@@ -23,7 +23,7 @@ export default function ToolsTeaser() {
               I built tools for problems I hit daily.
             </h2>
             <p className="mt-1.5 text-xs sm:text-sm" style={{ color:"var(--muted)" }}>
-              Six interactive tools — prompts, commits, code review, stacks, regex, tickets.
+              Six interactive tools, prompts, commits, code review, stacks, regex, tickets.
             </p>
           </div>
           <Link to="/tools" className="font-mono text-[0.7rem] uppercase tracking-widest transition-opacity hover:opacity-70 shrink-0" style={{ color:"var(--accent)" }}>
@@ -31,7 +31,7 @@ export default function ToolsTeaser() {
           </Link>
         </div>
 
-        {/* Tool grid — just names, no interactivity, acts as a preview */}
+        {/* Tool grid, just names, no interactivity, acts as a preview */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {TOOL_PREVIEWS.map((tool, i) => (
             <Link key={i} to="/tools" style={{ textDecoration:"none" }}>
