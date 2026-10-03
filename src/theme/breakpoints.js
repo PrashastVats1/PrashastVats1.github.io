@@ -8,5 +8,6 @@ export const BREAKPOINTS = {
 export const MEDIA = {
   mobile: `(max-width: ${BREAKPOINTS.mobileMax}px)`,
   tablet: `(min-width: ${BREAKPOINTS.mobileMax + 0.02}px) and (max-width: ${BREAKPOINTS.tabletMax}px)`,
+  spread: "(min-width: 1024px)",
   reducedMotion: "(prefers-reduced-motion: reduce)",
 };

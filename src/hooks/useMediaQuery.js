@@ -26,4 +26,6 @@ export function useMediaQuery(q) {
 
 /** True below ~768px, where the spellbook shows one page at a time. */
 export const useIsMobile = () => useMediaQuery(MEDIA.mobile);
+/** True from ~1024px, where the spellbook opens as a two-page spread. */
+export const useIsSpread = () => useMediaQuery(MEDIA.spread);
 export const usePrefersReducedMotion = () => useMediaQuery(MEDIA.reducedMotion);

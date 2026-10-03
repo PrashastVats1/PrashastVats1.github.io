@@ -9,8 +9,9 @@ import AudioControl from "./AudioControl";
 /**
  * Global frame: dark wood/stone environment, ribbon navigation, the parchment
  * content surface, and the persistent audio control. Persists across routes.
+ * Pages that draw their own surface (the Home spellbook) pass framed={false}.
  */
-export default function FantasyShell({ children }) {
+export default function FantasyShell({ children, framed = true }) {
   const path = useLocation();
   const item = findNavItem(path);
   const mainRef = useRef(null);
@@ -40,7 +41,7 @@ export default function FantasyShell({ children }) {
       <FantasyNav />
 
       <main id="main-content" ref={mainRef} tabIndex={-1} className="pv-main">
-        <ParchmentFrame key={path}>{children}</ParchmentFrame>
+        {framed ? <ParchmentFrame key={path}>{children}</ParchmentFrame> : <div key={path}>{children}</div>}
       </main>
 
       <footer className="pv-footer">

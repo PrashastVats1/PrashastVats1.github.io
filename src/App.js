@@ -20,10 +20,17 @@ const PAGES = {
   hire: HirePage,
 };
 
+// Pages that render their own surface instead of the shared parchment frame.
+const UNFRAMED = new Set(["home"]);
+
 function CurrentPage() {
   const item = findNavItem(useLocation());
   const Page = item ? PAGES[item.id] : NotFoundPage;
-  return <Page />;
+  return (
+    <FantasyShell framed={!(item && UNFRAMED.has(item.id))}>
+      <Page />
+    </FantasyShell>
+  );
 }
 
 // AudioProvider sits outside the router so route changes never reset sound.
@@ -32,9 +39,7 @@ export default function App() {
     <AudioProvider>
       <Router>
         <TransitionProvider>
-          <FantasyShell>
-            <CurrentPage />
-          </FantasyShell>
+          <CurrentPage />
         </TransitionProvider>
       </Router>
     </AudioProvider>

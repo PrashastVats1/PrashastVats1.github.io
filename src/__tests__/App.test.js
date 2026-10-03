@@ -148,6 +148,38 @@ describe("audio", () => {
   });
 });
 
+describe("mobile navigation", () => {
+  beforeEach(() => {
+    window.__viewportWidth = 375;
+    jest.useFakeTimers();
+  });
+  afterEach(() => jest.useRealTimers());
+
+  test("menu toggle opens the list and Escape closes it, returning focus", () => {
+    renderAt("#/home");
+    const toggle = screen.getByRole("button", { name: "Menu" });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+
+    fireEvent.click(toggle);
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    expect(toggle).toHaveAccessibleName("Close");
+    expect(document.getElementById("pv-nav-list")).toHaveClass("is-open");
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(toggle).toHaveFocus();
+  });
+
+  test("choosing a destination closes the menu", () => {
+    renderAt("#/home");
+    fireEvent.click(screen.getByRole("button", { name: "Menu" }));
+    fireEvent.click(navLink("Guild Recruitment"));
+    finishTransition("full");
+    expect(heading()).toHaveTextContent("Guild Recruitment");
+    expect(screen.getByRole("button", { name: "Menu" })).toHaveAttribute("aria-expanded", "false");
+  });
+});
+
 describe("avatar", () => {
   test("renders the designed crest fallback when no artwork is supplied", () => {
     renderAt("#/home");
