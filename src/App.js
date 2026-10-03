@@ -1,63 +1,42 @@
-import React, { useEffect } from "react";
-import { ThemeProvider } from "./context/ThemeContext";
-import { Router, Route } from "./router";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Marquee from "./components/Marquee";
-import About from "./components/About";
-import FeaturedProjects from "./components/FeaturedProjects";
-import StatsStrip from "./components/StatsStrip";
-import Skills from "./components/Skills";
-import MentalModels from "./components/MentalModels";
-import Experience from "./components/Experience";
-import Education from "./components/Education";
-import QuoteStrip from "./components/QuoteStrip";
-import ToolsTeaser from "./components/ToolsTeaser";
-import WritingTeaser from "./components/WritingTeaser";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import BlogListPage from "./components/BlogListPage";
-import BlogArticlePage from "./components/BlogArticlePage";
-import ToolsPage from "./components/ToolsPage";
+import { Router, useLocation } from "./router";
+import { findNavItem } from "./navigation";
+import { AudioProvider } from "./audio/AudioProvider";
+import { TransitionProvider } from "./transition/TransitionProvider";
+import FantasyShell from "./components/fantasy/FantasyShell";
+import HomePage from "./pages/HomePage";
+import ResumePage from "./pages/ResumePage";
+import ProjectsPage from "./pages/ProjectsPage";
+import ToolsPage from "./pages/ToolsPage";
+import BlogPage from "./pages/BlogPage";
+import HirePage from "./pages/HirePage";
+import NotFoundPage from "./pages/NotFoundPage";
 
-function PortfolioHome() {
-  useEffect(() => {
-    document.title = "Prashast Vats | Software Engineer";
-    const setMeta = (n,v) => { let el=document.querySelector(`meta[name="${n}"]`); if(!el){el=document.createElement("meta");el.name=n;document.head.appendChild(el);} el.content=v; };
-    setMeta("description","Prashast Vats, Software Engineer at Mphasis (HP Inc.). Ships AI agent security tools, voice agents, and full-stack apps.");
-  }, []);
-  return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <Marquee />
-        <About />
-        <FeaturedProjects />
-        <StatsStrip />
-        <Skills />
-        <MentalModels />
-        <Experience />
-        <Education />
-        <QuoteStrip />
-        <ToolsTeaser />
-        <WritingTeaser />
-        <Contact />
-      </main>
-      <Footer />
-    </>
-  );
+const PAGES = {
+  home: HomePage,
+  resume: ResumePage,
+  projects: ProjectsPage,
+  tools: ToolsPage,
+  blog: BlogPage,
+  hire: HirePage,
+};
+
+function CurrentPage() {
+  const item = findNavItem(useLocation());
+  const Page = item ? PAGES[item.id] : NotFoundPage;
+  return <Page />;
 }
 
+// AudioProvider sits outside the router so route changes never reset sound.
 export default function App() {
   return (
-    <ThemeProvider>
+    <AudioProvider>
       <Router>
-        <Route path="/blog/"><BlogArticlePage /></Route>
-        <Route path="/blog"><BlogListPage /></Route>
-        <Route path="/tools"><ToolsPage /></Route>
-        <Route path="/"><PortfolioHome /></Route>
+        <TransitionProvider>
+          <FantasyShell>
+            <CurrentPage />
+          </FantasyShell>
+        </TransitionProvider>
       </Router>
-    </ThemeProvider>
+    </AudioProvider>
   );
 }

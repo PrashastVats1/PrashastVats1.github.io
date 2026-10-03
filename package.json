@@ -6,23 +6,38 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "react-router-dom": "^6.22.0"
+    "react-router-dom": "^6.22.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
+    "prepare-assets": "node scripts/prepare-assets.js",
+    "prestart": "npm run prepare-assets",
     "start": "react-scripts start",
+    "prebuild": "npm run prepare-assets",
     "build": "react-scripts build",
+    "pretest": "npm run prepare-assets",
+    "test": "react-scripts test",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "gh-pages": "^6.0.0",
-    "tailwindcss": "^3.4.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.3.1",
     "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.35"
+    "gh-pages": "^6.0.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
