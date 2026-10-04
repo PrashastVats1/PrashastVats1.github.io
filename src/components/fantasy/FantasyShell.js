@@ -18,7 +18,7 @@ export default function FantasyShell({ children, framed = true }) {
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    document.title = documentTitleFor(item);
+    document.title = documentTitleFor(item, path);
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;

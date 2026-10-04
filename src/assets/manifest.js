@@ -20,7 +20,7 @@ export const AVATAR_FILES = {
 export const SCENES = {
   home: "assets/scenes/home.webp",
   resume: "assets/scenes/resume.webp",
-  projects: "assets/scenes/projects.webp",
+  projects: "assets/artifacts/projects.webp",
   tools: "assets/scenes/tools.webp",
   blog: "assets/scenes/blog.webp",
   hire: "assets/scenes/hire.webp",
@@ -36,5 +36,5 @@ export const AUDIO = {
 };
 
 export const navIconPath = (id) => `assets/icons/nav-${id}.svg`;
-export const artifactPath = (slug) => `assets/artifacts/${slug}.png`;
+export const artifactPath = (name) => `assets/artifacts/${name}.webp`;
 export const labPath = (slug) => `assets/lab/${slug}.png`;

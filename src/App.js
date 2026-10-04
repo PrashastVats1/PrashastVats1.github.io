@@ -21,7 +21,7 @@ const PAGES = {
 };
 
 // Pages that render their own surface instead of the shared parchment frame.
-const UNFRAMED = new Set(["home"]);
+const UNFRAMED = new Set(["home", "projects"]);
 
 function CurrentPage() {
   const item = findNavItem(useLocation());

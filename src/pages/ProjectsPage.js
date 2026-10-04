@@ -1,15 +1,12 @@
-import PageHeader from "../components/fantasy/PageHeader";
-import PlaceholderNote from "../components/fantasy/PlaceholderNote";
+import { useLocation } from "../router";
+import ArtifactMissing from "./projects/ArtifactMissing";
+import ArtifactRecord from "./projects/ArtifactRecord";
+import HallOfArtifacts from "./projects/HallOfArtifacts";
+import { findArtifact, slugFromPath } from "./projects/artifacts";
 
 export default function ProjectsPage() {
-  return (
-    <section>
-      <PageHeader
-        title="Hall of Artifacts"
-        plain="Projects"
-        description="Products and tools I have designed, built, and shipped."
-      />
-      <PlaceholderNote />
-    </section>
-  );
+  const slug = slugFromPath(useLocation());
+  if (!slug) return <HallOfArtifacts />;
+  const artifact = findArtifact(slug);
+  return artifact ? <ArtifactRecord artifact={artifact} /> : <ArtifactMissing />;
 }

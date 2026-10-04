@@ -1,4 +1,5 @@
 import { matchPath } from "./router";
+import { findArtifact, slugFromPath } from "./pages/projects/artifacts";
 
 // Every fantasy label is paired with a plain professional label so the site
 // stays usable without learning the fantasy vocabulary.
@@ -15,8 +16,13 @@ export function findNavItem(path) {
   return NAV_ITEMS.find((item) => matchPath(item.path, path)) || null;
 }
 
-export function documentTitleFor(item) {
+export function documentTitleFor(item, path = "") {
   if (!item) return "Page not found | Prashast Vats";
   if (item.id === "home") return "Prashast Vats | Software Engineer";
+  const slug = item.id === "projects" && slugFromPath(path);
+  if (slug) {
+    const artifact = findArtifact(slug);
+    return `${artifact ? artifact.name : "Artifact not found"} | ${item.label} | Prashast Vats`;
+  }
   return `${item.label} (${item.plain}) | Prashast Vats`;
 }
