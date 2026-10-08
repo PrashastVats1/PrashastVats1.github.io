@@ -1,0 +1,14 @@
+{
+  "name": "prashast-lab-ai",
+  "private": true,
+  "type": "module",
+  "description": "Server-side boundary for the Wizard's Laboratory AI instruments (Cloudflare Worker).",
+  "scripts": {
+    "dev": "wrangler dev",
+    "dev:node": "node scripts/dev-server.js",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.36.0"
+  }
+}
