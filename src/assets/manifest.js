@@ -13,8 +13,8 @@ export function assetUrl(relativePath) {
 }
 
 export const AVATAR_FILES = {
-  regular: "avatar/regular.png",
-  scholar: "avatar/scholar.png",
+  regular: "avatar/regular.webp",
+  scholar: "avatar/scholar.webp",
 };
 
 export const SCENES = {

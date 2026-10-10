@@ -2080,6 +2080,31 @@
 .pv-lab::before { left: 12px; border-left: 2px solid rgba(201, 160, 67, 0.7); border-top-left-radius: 6px; }
 .pv-lab::after { right: 12px; border-right: 2px solid rgba(201, 160, 67, 0.7); border-top-right-radius: 6px; }
 
+/* With the laboratory artwork behind it, the room shows through the top of the panel. */
+.pv-lab--scene {
+  background:
+    radial-gradient(ellipse 60% 22rem at 50% 0%, rgba(232, 160, 80, 0.12), transparent 72%),
+    var(--pv-noise-dark),
+    linear-gradient(180deg, rgba(26, 18, 12, 0.3) 0, rgba(26, 18, 12, 0.62) 18rem, rgba(22, 16, 11, 0.88) 30rem, rgba(20, 14, 10, 0.94) 100%);
+  border-color: rgba(201, 160, 67, 0.6);
+  box-shadow:
+    inset 0 0 0 6px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 7px rgba(201, 160, 67, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.5),
+    0 30px 60px rgba(0, 0, 0, 0.55);
+}
+/* A pool of shadow behind the title so the window and lanterns never sit directly under text. */
+.pv-lab--scene .pv-lab__header { position: relative; }
+.pv-lab--scene .pv-lab__header::before {
+  content: "";
+  position: absolute;
+  /* Sideways reach matches the panel's horizontal padding so it never widens the page. */
+  inset: -2.5rem calc(-1 * clamp(0.85rem, 3.2vw, 3rem)) -1.5rem;
+  z-index: -1;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(12, 8, 5, 0.72) 0%, rgba(12, 8, 5, 0.5) 55%, transparent 100%);
+  pointer-events: none;
+}
+
 .pv-lab__header { max-width: 46rem; margin: 0 auto var(--pv-space-7); text-align: center; }
 
 /* The shelf: instruments stand on wooden planks with brass edging. */
@@ -2180,9 +2205,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--pv-art-focus, 50% 45%);
   transition: opacity 400ms var(--pv-ease-out);
 }
 .pv-instrument-art__image[data-loading] { opacity: 0; }
+/* Where each piece's subject sits, so narrow tablet and phone crops keep it in frame. */
+.pv-instrument[data-instrument="prompt-injection-inspector"] { --pv-art-focus: 58% 45%; }
+.pv-instrument[data-instrument="regex-alchemist"] { --pv-art-focus: 46% 45%; }
+.pv-instrument[data-instrument="json-scribe"] { --pv-art-focus: 36% 45%; }
+.pv-instrument[data-instrument="jira-ticket-scorer"] { --pv-art-focus: 58% 45%; }
 .pv-instrument-art__placeholder { display: block; width: 100%; height: 100%; padding: 6% 8% 3%; }
 
 .pv-apparatus__halo { fill: rgba(var(--pv-accent-rgb), 0.08); }

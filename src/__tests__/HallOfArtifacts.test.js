@@ -7,7 +7,7 @@ import { ARTIFACTS, COLLECTION, FEATURED, LINK_KINDS, STATUSES, findArtifact, sl
 import { TRANSITION_TIMINGS } from "../transition/transitionConfig";
 
 // No Hall artwork in the manifest: every slot must fall back to the designed placeholder.
-jest.mock("../generated/assetManifest", () => ({ __esModule: true, default: ["avatar/regular.png"] }));
+jest.mock("../generated/assetManifest", () => ({ __esModule: true, default: ["avatar/regular.webp"] }));
 
 function renderAt(hash) {
   window.history.replaceState(null, "", `/${hash}`);

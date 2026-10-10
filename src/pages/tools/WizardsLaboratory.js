@@ -6,10 +6,18 @@ import InstrumentArt from "./InstrumentArt";
 import { INSTRUMENTS, INSTRUMENT_KINDS } from "./instruments";
 
 function LabScene() {
-  if (!hasAsset(SCENES.tools)) return null;
   return (
     <div className="pv-lab-scene" aria-hidden="true">
-      <SafeImage path={SCENES.tools} alt="" className="pv-lab-scene__image" decoding="async" fetchpriority="low" keepLayout />
+      <SafeImage
+        path={SCENES.tools}
+        alt=""
+        className="pv-lab-scene__image"
+        width={1672}
+        height={941}
+        decoding="async"
+        fetchpriority="low"
+        keepLayout
+      />
     </div>
   );
 }
@@ -84,11 +92,12 @@ export default function WizardsLaboratory() {
   };
 
   const current = INSTRUMENTS.find((i) => i.slug === active);
+  const scene = hasAsset(SCENES.tools);
 
   return (
     <>
-      <LabScene />
-      <div className="pv-lab">
+      {scene && <LabScene />}
+      <div className={`pv-lab${scene ? " pv-lab--scene" : ""}`}>
         <header className="pv-lab__header">
           <p className="pv-hall__eyebrow">Instruments forged for the modern spellcaster</p>
           <h1 className="pv-hall__title">Wizard's Laboratory</h1>

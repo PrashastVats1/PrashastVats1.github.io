@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import App from "../App";
 import { INSTRUMENTS } from "../pages/tools/instruments";
 
@@ -29,7 +29,9 @@ test("each instrument uses its own lab artwork slot, decoratively, with reserved
     expect(img).toHaveAttribute("alt", "");
     expect(img).toHaveAttribute("width", "1200");
     expect(img).toHaveAttribute("height", "900");
+    expect(img).toHaveAttribute("loading", "lazy");
     expect(img).not.toHaveAttribute("hidden");
+    expect(document.querySelector(`.pv-instrument[data-instrument="${slug}"] svg[data-placeholder]`)).toBeInTheDocument();
   });
 });
 
@@ -38,4 +40,12 @@ test("the laboratory scene sits behind the room and is hidden from assistive tec
   expect(scene).toHaveAttribute("aria-hidden", "true");
   expect(scene.querySelector("img")).toHaveAttribute("src", "/assets/lab/laboratory.webp");
   expect(document.querySelector(".pv-lab").contains(scene)).toBe(false);
+  expect(document.querySelector(".pv-lab")).toHaveClass("pv-lab--scene");
+});
+
+test("once an instrument's artwork loads, its drawn stand-in is removed", () => {
+  const button = document.querySelector('.pv-instrument[data-instrument="regex-alchemist"]');
+  fireEvent.load(button.querySelector("img"));
+  expect(button.querySelector("svg[data-placeholder]")).toBeNull();
+  expect(button.querySelector("img")).not.toHaveAttribute("data-loading");
 });
