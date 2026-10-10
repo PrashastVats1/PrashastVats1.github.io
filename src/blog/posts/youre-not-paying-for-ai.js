@@ -3,6 +3,7 @@ const post = {
   title: "You're Not Paying for AI. You're Subsidizing It.",
   date: "March 2026", readTime: "4 min read", tag: "AI",
   excerpt: "My Claude subscription costs $20/month. The actual compute cost? Significantly higher. That gap isn't a coincidence, it's a strategy. And it's starting to show cracks.",
+  source: { platform: "LinkedIn", url: "https://www.linkedin.com/posts/prashast-vats_youre-not-paying-for-ai-youre-subsidizing-share-7454168393361936385-zPft" },
   content: [
     {type:"image",src:"/images/ai-subsidy.jpeg",alt:"Venture capital funnel showing billions in investments subsidizing $20/month AI subscriptions"},
     {type:"paragraph",text:"I use AI tools daily. This article was drafted by me, then edited with AI assistance. That's exactly why I think about this carefully."},

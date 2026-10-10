@@ -44,7 +44,8 @@ describe("routing", () => {
 
   test("blog article URLs stay on the blog section", () => {
     renderAt("#/blog/the-loop-is-tightening");
-    expect(heading()).toHaveTextContent("Archmage's Notes");
+    expect(heading()).toHaveTextContent("The Loop Is Tightening. And You're Inside It.");
+    expect(navLink("Archmage's Notes")).toHaveAttribute("aria-current", "page");
   });
 
   test("unknown routes show the not-found page", () => {

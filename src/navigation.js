@@ -1,5 +1,6 @@
 import { matchPath } from "./router";
 import { findArtifact, slugFromPath } from "./pages/projects/artifacts";
+import { findPost, slugFromPath as postSlugFromPath } from "./pages/blog/archive";
 
 // Every fantasy label is paired with a plain professional label so the site
 // stays usable without learning the fantasy vocabulary.
@@ -23,6 +24,11 @@ export function documentTitleFor(item, path = "") {
   if (slug) {
     const artifact = findArtifact(slug);
     return `${artifact ? artifact.name : "Artifact not found"} | ${item.label} | Prashast Vats`;
+  }
+  const postSlug = item.id === "blog" && postSlugFromPath(path);
+  if (postSlug) {
+    const post = findPost(postSlug);
+    return `${post ? post.title : "Folio not found"} | ${item.label} | Prashast Vats`;
   }
   return `${item.label} (${item.plain}) | Prashast Vats`;
 }

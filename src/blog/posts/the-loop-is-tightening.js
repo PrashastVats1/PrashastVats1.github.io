@@ -3,6 +3,7 @@ const post = {
   title: "The Loop Is Tightening. And You're Inside It.",
   date: "April 2026", readTime: "3 min read", tag: "AI",
   excerpt: "Nvidia invested in OpenAI. OpenAI buys Nvidia chips. Amazon funds Anthropic, Anthropic pays Amazon for cloud. The money moves in a loop, and patience is running out.",
+  source: { platform: "LinkedIn", url: "https://www.linkedin.com/posts/prashast-vats_the-loop-is-tightening-and-youre-inside-share-7456688050274979840-bARv" },
   content: [
     {type:"image",src:"/images/loop-tightening.jpeg",alt:"Bloomberg visualization showing circular investment flows between major AI companies"},
     {type:"paragraph",text:"Last week I wrote about how AI subscriptions are priced below cost. This week: where the money comes from. And what happens when the people supplying it want it back."},

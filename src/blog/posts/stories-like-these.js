@@ -3,6 +3,7 @@ const post = {
   title: "Stories Like These Are Everywhere. Here's Mine.",
   date: "August 2024", readTime: "4 min read", tag: "AI",
   excerpt: "Three weeks. Zero Python fluency. One ML model deployed. How I used ChatGPT not as a code generator, but as a structured learning partner, and what came out of it.",
+  source: { platform: "LinkedIn", url: "https://www.linkedin.com/posts/prashast-vats_stories-like-these-are-everywhere-these-days-share-7352789891430207489-VcVj" },
   content: [
     {type:"image",src:"/images/stories-ai.jpeg",alt:"AI and human brain connection, illustration of AI as a learning accelerator"},
     {type:"paragraph",text:"\"I built my first app with ChatGPT.\" \"AI helped me crack my first data science project.\" \"I learned Python in 30 days with zero prior experience.\""},
