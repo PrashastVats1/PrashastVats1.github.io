@@ -6,8 +6,8 @@ import { entryMatch } from "../pages/resume/abilityMatch";
 import { ABILITIES, ALL_ENTRIES, SKILL_GROUPS } from "../pages/resume/resumeContent";
 import { TRANSITION_TIMINGS } from "../transition/transitionConfig";
 
-// The owner has supplied avatar/regular.png.
-jest.mock("../generated/assetManifest", () => ({ __esModule: true, default: ["avatar/regular.png"] }));
+// The owner has supplied avatar/regular.webp.
+jest.mock("../generated/assetManifest", () => ({ __esModule: true, default: ["avatar/regular.webp"] }));
 
 function renderRecord() {
   window.history.replaceState(null, "", "/#/resume");
@@ -328,7 +328,7 @@ describe("avatar", () => {
   test("renders the supplied regular avatar through the Avatar component", () => {
     renderRecord();
     const img = document.querySelector(".pv-record__avatar img");
-    expect(img).toHaveAttribute("src", "/avatar/regular.png");
+    expect(img).toHaveAttribute("src", "/avatar/regular.webp");
     expect(img).toHaveAttribute("alt", "Prashast Vats as a software archmage");
     fireEvent.load(img);
     expect(img).not.toHaveAttribute("hidden");

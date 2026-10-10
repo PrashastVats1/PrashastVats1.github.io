@@ -4,7 +4,7 @@ import { INSTRUMENTS, INSTRUMENT_KINDS } from "../pages/tools/instruments";
 import { TRANSITION_TIMINGS } from "../transition/transitionConfig";
 
 // No Laboratory artwork supplied: every slot must use its designed fallback.
-jest.mock("../generated/assetManifest", () => ({ __esModule: true, default: ["avatar/regular.png", "avatar/scholar.png"] }));
+jest.mock("../generated/assetManifest", () => ({ __esModule: true, default: ["avatar/regular.webp", "avatar/scholar.webp"] }));
 
 function renderAt(hash) {
   window.history.replaceState(null, "", `/${hash}`);

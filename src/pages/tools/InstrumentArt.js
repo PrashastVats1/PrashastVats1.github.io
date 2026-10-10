@@ -117,6 +117,7 @@ export default function InstrumentArt({ instrument, className = "" }) {
         className="pv-instrument-art__image"
         width={INSTRUMENT_ART_WIDTH}
         height={INSTRUMENT_ART_HEIGHT}
+        loading="lazy"
         decoding="async"
         keepLayout
         fallback={<ApparatusPlaceholder slug={instrument.slug} />}
