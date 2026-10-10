@@ -3,6 +3,7 @@ const post = {
   title: "Prompt Engineering Is Just System Design",
   date: "February 2026", readTime: "4 min read", tag: "AI",
   excerpt: "Most prompt advice focuses on clever wording. What actually works: treating prompts like specifications and applying the same principles we use when designing software.",
+  source: { platform: "LinkedIn", url: "https://www.linkedin.com/posts/prashast-vats_prompt-engineering-is-often-treated-like-share-7414973578703716371-w3UB" },
   content: [
     {type:"image",src:"/images/prompt-engineering.jpeg",alt:"Prompt Engineering Isn't Magic - It's System Design: Chatting with AI vs Designing with AI"},
     {type:"paragraph",text:"Prompt engineering is often treated like a magic trick. Write the right sentence and you'll get the perfect answer. What I've learned is that this mindset breaks the moment you try to use AI in real workflows."},

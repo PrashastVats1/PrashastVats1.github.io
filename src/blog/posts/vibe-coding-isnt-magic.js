@@ -3,6 +3,7 @@ const post = {
   title: "Vibe Coding Isn't Magic - It's Faster Iteration",
   date: "February 2025", readTime: "3 min read", tag: "Engineering",
   excerpt: "The internet talks about vibe coding like it's about letting AI write while you just steer. My experience has been the opposite. It only works if you already think like an engineer.",
+  source: { platform: "LinkedIn", url: "https://www.linkedin.com/posts/prashast-vats_vibe-coding-isnt-magic-its-faster-iteration-share-7435660555694256128-yicR" },
   content: [
     {type:"image",src:"/images/vibe-coding.jpeg",alt:"Vibe Coding equals Faster Iteration, Not Less Thinking. The AI writes faster, the engineer still thinks"},
     {type:"paragraph",text:"The internet has been talking a lot about \"vibe coding\", letting AI generate code while you guide it with prompts. At first glance, it can look like letting AI write code while the developer just steers it."},
