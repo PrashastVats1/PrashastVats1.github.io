@@ -11,9 +11,11 @@ export default function ArtifactsPage() {
       <Divider className="pv-book-divider" />
       <ul className="pv-artifacts-preview__list">
         {ARTIFACTS.map((artifact) => (
-          <li key={artifact.name} className="pv-artifacts-preview__item">
+          <li key={artifact.slug} className="pv-artifacts-preview__item">
             <h3 className="pv-artifacts-preview__name">
-              {artifact.name}
+              <Link to={artifact.route} className="pv-artifacts-preview__link">
+                {artifact.name}
+              </Link>
               {artifact.subtitle && <span className="pv-artifacts-preview__subtitle">{artifact.subtitle}</span>}
             </h3>
             <p className="pv-artifacts-preview__status">{artifact.status}</p>

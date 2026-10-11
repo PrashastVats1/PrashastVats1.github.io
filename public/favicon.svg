@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <title>Prashast Vats</title>
+  <circle cx="50" cy="50" r="47" fill="#2a1c12" stroke="#c9a043" stroke-width="5"/>
+  <path d="M50 12 C55 22 62 31 70 38 L30 38 C38 31 45 22 50 12 Z" fill="#1f3f66" stroke="#c9a043" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M22 40 Q50 33 78 40 Q50 46 22 40 Z" fill="#1f3f66" stroke="#c9a043" stroke-width="2.5" stroke-linejoin="round"/>
+  <text x="50" y="80" text-anchor="middle" fill="#f3e5c3" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700" letter-spacing="1">PV</text>
+</svg>

@@ -2,7 +2,10 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "../App";
 import config from "../config";
 import { TRANSITION_TIMINGS } from "../transition/transitionConfig";
-import { ARTIFACTS, IDENTITY, KNOWN_TECH, SCHOOLS } from "../pages/home/homeContent";
+import { ARTIFACTS, IDENTITY, SCHOOLS } from "../pages/home/homeContent";
+import { KNOWN_TECH } from "../testFixtures/knownTech";
+import { ARTIFACTS as COLLECTION_ARTIFACTS, FEATURED, statusText } from "../pages/projects/artifacts";
+import { EMPLOYMENT, RECORD } from "../pages/resume/resumeContent";
 
 jest.mock("../generated/assetManifest", () => ({ __esModule: true, default: [] }));
 
@@ -219,20 +222,44 @@ describe("spellbook home: content accuracy", () => {
     });
   });
 
-  test("artifacts are the featured projects from config, in order", () => {
-    expect(ARTIFACTS).toHaveLength(config.featuredProjects.length);
-    ARTIFACTS.forEach((artifact, i) => {
-      expect(config.featuredProjects[i].name.startsWith(artifact.name)).toBe(true);
+  test("Home previews four projects drawn from the Hall of Artifacts collection", () => {
+    expect(ARTIFACTS.map((a) => a.slug)).toEqual(["remora", "ai-agent-auth-gateway", "priya", "event-intelligence"]);
+    ARTIFACTS.forEach((preview) => {
+      const source = COLLECTION_ARTIFACTS.find((a) => a.slug === preview.slug);
+      expect(source).toBeTruthy();
+      expect(preview.name).toBe(source.name);
+      expect(preview.summary).toBe(source.shortDescription);
+      expect(preview.status).toBe(statusText(source));
+      expect(preview.route).toBe(`/projects/${source.slug}`);
+    });
+    // The Hall keeps its own three featured artifacts; Home adds Event Intelligence.
+    expect(FEATURED.map((a) => a.slug)).toEqual(["remora", "ai-agent-auth-gateway", "priya"]);
+  });
+
+  test("each previewed project links to its record in the Hall", () => {
+    renderHome();
+    fireEvent.click(nextButton());
+    const page = book().querySelector('[data-page="artifacts"]');
+    ARTIFACTS.forEach((a) => {
+      expect(within(page).getByRole("link", { name: a.name })).toHaveAttribute("href", `#/projects/${a.slug}`);
     });
   });
 
-  test("identity facts come from config", () => {
-    const current = config.experience.find((e) => /present/i.test(e.period));
+  test("the welcome page offers a way to hire, leading to Guild Recruitment", () => {
+    renderHome();
+    const page = book().querySelector('[data-page="welcome"]');
+    expect(within(page).getByRole("link", { name: /Guild Recruitment/ })).toHaveAttribute("href", "#/hire");
+  });
+
+  test("identity facts match the Character Record", () => {
+    const current = EMPLOYMENT.find((e) => e.current);
     expect(IDENTITY.facts).toEqual([
       { label: "Experience", value: "3+ years" },
-      { label: "Currently", value: `${current.role}, ${current.company}` },
+      { label: "Currently", value: `${current.title}, ${current.company} (${current.context})` },
       { label: "Based in", value: config.location },
     ]);
+    expect(IDENTITY.facts[0].value).toBe(RECORD.experience);
+    expect(IDENTITY.facts[1].value).toBe("Software Engineer, Mphasis Ltd. (HP Inc. engagement)");
   });
 
   test("no emoji in Home content or rendered Home text", () => {

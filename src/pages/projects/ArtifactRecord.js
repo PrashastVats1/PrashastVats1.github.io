@@ -96,6 +96,7 @@ export default function ArtifactRecord({ artifact }) {
                       target="_blank"
                       rel="noreferrer"
                       className={`pv-button ${i === 0 ? "pv-button--primary" : "pv-button--secondary"}`}
+                      aria-describedby={link.note ? `pv-artifact-link-note-${i}` : undefined}
                     >
                       <span className="pv-button__label">{linkLabel(link)}</span>
                       <span className="pv-button__hint">
@@ -103,6 +104,11 @@ export default function ArtifactRecord({ artifact }) {
                         <span className="pv-visually-hidden"> (opens in a new tab)</span>
                       </span>
                     </a>
+                    {link.note && (
+                      <p id={`pv-artifact-link-note-${i}`} className="pv-link-note">
+                        {link.note}
+                      </p>
+                    )}
                   </li>
                 ))}
               </ul>

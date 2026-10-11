@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-// Tokens are defined as CSS variables in src/index.css; Tailwind only maps
-// names onto them so utilities and hand-written CSS share one source.
+// Only Tailwind's base reset (Preflight) is emitted; src/index.css does not
+// include the components or utilities layers. The token mapping below keeps
+// names aligned with the CSS variables in src/index.css if utilities return.
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {

@@ -1,6 +1,6 @@
+/* Tailwind supplies only its base reset (Preflight), which the rules below
+   rely on. All styling is hand-written; no utility classes are used. */
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* =========================================================================
    DESIGN TOKENS
@@ -579,7 +579,17 @@
   cursor: pointer;
   transition: box-shadow var(--pv-duration-base), border-color var(--pv-duration-base);
 }
-.pv-audio__button:hover { border-color: var(--pv-gold-bright); }
+.pv-audio__button:hover:not(:disabled) { border-color: var(--pv-gold-bright); }
+.pv-audio__button:disabled { cursor: not-allowed; opacity: 0.6; }
+.pv-audio__button[data-state="loading"] .pv-audio__icon { animation: pv-audio-pulse 1.2s ease-in-out infinite; }
+@keyframes pv-audio-pulse { 50% { opacity: 0.4; } }
+/* Autoplay was refused: a gold edge and three slow pulses point to the control, then it rests. */
+.pv-audio__button[data-state="autoplay-blocked"] { border-color: var(--pv-gold-bright); }
+.pv-audio__button[data-state="autoplay-blocked"] .pv-audio__icon { animation: pv-audio-pulse 1.6s ease-in-out 3; }
+@media (prefers-reduced-motion: reduce) {
+  .pv-audio__button[data-state="loading"] .pv-audio__icon,
+  .pv-audio__button[data-state="autoplay-blocked"] .pv-audio__icon { animation: none; }
+}
 .pv-audio__button[aria-pressed="true"] { border-color: var(--pv-gold-bright); box-shadow: var(--pv-shadow-raised), var(--pv-glow-magic); }
 
 .pv-audio__icon { width: 22px; height: 22px; color: var(--pv-gold-bright); flex-shrink: 0; }
@@ -674,22 +684,6 @@
 .pv-home .pv-page-header__divider { margin-inline: auto; }
 .pv-home__tagline { max-width: 38rem; margin: 0; font-size: var(--pv-text-lg); color: var(--pv-ink-soft); }
 .pv-home .pv-actions { justify-content: center; }
-
-.pv-placeholder-note {
-  display: flex;
-  align-items: center;
-  gap: var(--pv-space-3);
-  max-width: 40rem;
-  margin-top: var(--pv-space-7);
-  padding-top: var(--pv-space-4);
-  font-style: italic;
-  font-size: var(--pv-text-sm);
-  color: var(--pv-ink-faint);
-  text-align: left;
-  border-top: 1px dashed rgba(107, 85, 60, 0.5);
-}
-.pv-placeholder-note p { margin: 0; }
-.pv-placeholder-note__seal { width: 34px; height: 34px; flex-shrink: 0; }
 
 /* =========================================================================
    SPELLBOOK (Home)
@@ -1009,6 +1003,15 @@
   margin-top: var(--pv-space-6);
 }
 .pv-welcome__more { margin: var(--pv-space-5) 0 0; font-size: 0.98rem; color: var(--pv-ink-soft); }
+.pv-welcome__hire {
+  max-width: 24rem;
+  margin: var(--pv-space-4) 0 0;
+  padding-top: var(--pv-space-3);
+  font-size: 0.98rem;
+  color: var(--pv-ink-soft);
+  border-top: 1px dashed rgba(107, 85, 60, 0.45);
+}
+.pv-welcome__hire-link { font-weight: 700; color: var(--pv-burgundy); }
 
 /* Schools page */
 .pv-schools__list { display: grid; gap: var(--pv-space-5); margin: 0; padding: 0; list-style: none; }
@@ -1027,11 +1030,28 @@
   border-radius: 999px;
 }
 
+/* A short caveat printed beside an external link, e.g. a demo on a sleeping free host. */
+.pv-link-note {
+  margin: var(--pv-space-2) 0 0;
+  font-size: var(--pv-text-sm);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--pv-ink-faint);
+}
+
 /* Artifacts preview page */
 .pv-artifacts-preview__list { display: grid; gap: var(--pv-space-4); margin: 0; padding: 0; list-style: none; }
 .pv-artifacts-preview__item { padding-bottom: var(--pv-space-4); border-bottom: 1px dashed rgba(107, 85, 60, 0.4); }
 .pv-artifacts-preview__item:last-child { padding-bottom: 0; border-bottom: 0; }
 .pv-artifacts-preview__name { margin: 0; font-family: var(--pv-font-display); font-weight: 400; font-size: 1.2rem; line-height: 1.2; }
+.pv-artifacts-preview__link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(122, 31, 43, 0.45);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.pv-artifacts-preview__link:hover { color: var(--pv-burgundy); text-decoration-color: currentColor; }
 .pv-artifacts-preview__subtitle {
   display: block;
   margin-top: 0.1rem;
@@ -1290,7 +1310,7 @@
 .pv-entry__status {
   margin: 0;
   padding: 1px var(--pv-space-2);
-  font-size: 0.72rem;
+  font-size: var(--pv-text-xs);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1324,7 +1344,7 @@
   display: inline-block;
   margin-right: var(--pv-space-2);
   padding: 0 0.4rem;
-  font-size: 0.72rem;
+  font-size: var(--pv-text-xs);
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1.5rem;
@@ -1751,7 +1771,7 @@
   align-items: center;
   gap: 0.35rem;
   padding: 1px 0.55rem 1px 0.4rem;
-  font-size: 0.72rem;
+  font-size: var(--pv-text-xs);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2348,7 +2368,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--pv-gold-ink);
+  color: var(--pv-ink-faint);
 }
 .pv-bench__title {
   margin: 0.2rem 0 0;
@@ -2661,7 +2681,7 @@
   align-self: flex-start;
   margin-bottom: 0.3rem;
   padding: 1px 0.5rem;
-  font-size: 0.7rem;
+  font-size: var(--pv-text-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2760,9 +2780,9 @@
   .pv-instrument .pv-instrument-art { width: auto; aspect-ratio: 3 / 2; min-height: 0; }
   .pv-instrument__plate { padding: 0.6rem 0.7rem 0.7rem; border-left: 0; border-top: 3px double rgba(148, 114, 58, 0.8); }
   .pv-instrument__name { font-size: 1.05rem; }
-  .pv-instrument__plain { font-size: 0.7rem; letter-spacing: 0.06em; }
+  .pv-instrument__plain { font-size: var(--pv-text-xs); letter-spacing: 0.06em; }
   .pv-instrument__summary { display: none; }
-  .pv-instrument__state { padding-top: 0.5rem; font-size: 0.7rem; letter-spacing: 0.06em; }
+  .pv-instrument__state { padding-top: 0.5rem; font-size: var(--pv-text-xs); letter-spacing: 0.06em; }
   .pv-workbench { margin-top: var(--pv-space-6); }
   .pv-bench__privacy { max-width: none; }
   .pv-tool__row { grid-template-columns: minmax(0, 1fr); }
@@ -3411,7 +3431,7 @@
 }
 
 .pv-copy {
-  min-height: 36px;
+  min-height: 44px;
   padding: 0.2rem 0.75rem;
   font: inherit;
   font-size: var(--pv-text-sm);

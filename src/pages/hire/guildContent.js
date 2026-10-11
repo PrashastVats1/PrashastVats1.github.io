@@ -1,5 +1,5 @@
 import config from "../../config";
-import { ARTIFACTS, STATUSES, artifactRoute, linkLabel } from "../projects/artifacts";
+import { ARTIFACTS, artifactRoute, linkLabel, statusText } from "../projects/artifacts";
 
 /*
  * Guild Recruitment content. Every claim restates a fact already recorded in
@@ -91,11 +91,11 @@ export const PROOF = PROOF_SLUGS.map((slug) => {
     slug,
     name: artifact.name,
     subtitle: artifact.subtitle,
-    status: artifact.statusDetail ? `${STATUSES[artifact.status].label}, ${artifact.statusDetail}` : STATUSES[artifact.status].label,
+    status: statusText(artifact),
     summary: artifact.shortDescription,
     result: artifact.results ? artifact.results[0] : null,
     record: artifactRoute(slug),
-    external: { href: link.href, label: linkLabel(link) },
+    external: { href: link.href, label: linkLabel(link), note: link.note || null },
   };
 });
 

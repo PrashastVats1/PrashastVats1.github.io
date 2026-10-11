@@ -105,7 +105,7 @@ describe("copying the address", () => {
     renderAt("#/hire");
     fireEvent.click(screen.getByRole("button", { name: "Copy address" }));
     expect(writeText).toHaveBeenCalledWith(config.email);
-    expect(await screen.findByRole("status")).toHaveTextContent("Email address copied.");
+    expect(await within(notice()).findByRole("status")).toHaveTextContent("Email address copied.");
   });
 
   test("reports a failed copy instead of claiming success", async () => {
@@ -294,4 +294,10 @@ describe("navigation", () => {
     expect(window.location.hash).toBe("#/projects/remora");
     expect(h1()).toHaveTextContent("Remora");
   });
+});
+
+test("the Priya proof carries the cold-start note beside its demo link", () => {
+  renderAt("#/hire");
+  const demo = screen.getByRole("link", { name: /View live demo for Priya/ });
+  expect(document.getElementById(demo.getAttribute("aria-describedby"))).toHaveTextContent(/may be slow to wake/);
 });

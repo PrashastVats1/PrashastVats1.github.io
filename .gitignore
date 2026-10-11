@@ -9,6 +9,10 @@ build/
 .cache/
 .claude/
 
+# Python bytecode from the asset scripts in scripts/
+__pycache__/
+*.py[cod]
+
 # Local secrets for the AI Worker (see worker/README.md)
 .dev.vars
 

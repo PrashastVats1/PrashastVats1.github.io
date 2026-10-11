@@ -12,10 +12,30 @@ export function assetUrl(relativePath) {
   return `${process.env.PUBLIC_URL}/${relativePath}`;
 }
 
+/**
+ * srcSet for the committed `<stem>-<width>.webp` variants of an image
+ * (scripts/make-image-variants.py). Only variants present in the manifest are
+ * listed; returns undefined when there are none so the plain src is used.
+ */
+export function variantSrcSet(stem, widths) {
+  const entries = widths
+    .map((width) => [`${stem}-${width}.webp`, width])
+    .filter(([path]) => hasAsset(path));
+  return entries.length ? entries.map(([path, width]) => `${assetUrl(path)} ${width}w`).join(", ") : undefined;
+}
+
 export const AVATAR_FILES = {
   regular: "avatar/regular.webp",
   scholar: "avatar/scholar.webp",
 };
+
+export const AVATAR_VARIANT_STEMS = {
+  regular: "assets/avatar/regular",
+  scholar: "assets/avatar/scholar",
+};
+export const AVATAR_WIDTHS = [96, 192, 384];
+export const ARTIFACT_WIDTHS = [480, 720, 960];
+export const LAB_WIDTHS = [320, 560];
 
 export const SCENES = {
   home: "assets/scenes/home.webp",
