@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "../App";
 import config from "../config";
-import { KNOWN_TECH } from "../pages/home/homeContent";
+import { KNOWN_TECH } from "../testFixtures/knownTech";
 import { SKILL_GROUPS } from "../pages/resume/resumeContent";
 import { ARTIFACTS, COLLECTION, FEATURED, LINK_KINDS, STATUSES, findArtifact, slugFromPath } from "../pages/projects/artifacts";
 import { TRANSITION_TIMINGS } from "../transition/transitionConfig";
@@ -320,7 +320,7 @@ describe("content accuracy", () => {
   test("every technology is backed by config, the resume, or the supplied project summaries", () => {
     ARTIFACTS.forEach((a) => {
       a.technologies.forEach((tech) => {
-        const backed = KNOWN_TECH.has(tech) || resumeSkills.has(tech) || SUPPLIED_TECH.has(tech) || config.marqueeItems.includes(tech);
+        const backed = KNOWN_TECH.has(tech) || resumeSkills.has(tech) || SUPPLIED_TECH.has(tech);
         expect({ artifact: a.slug, tech, backed }).toEqual({ artifact: a.slug, tech, backed: true });
       });
     });
@@ -342,5 +342,29 @@ describe("content accuracy", () => {
     expect(hrefs("event-intelligence")).toEqual(["https://ai-event-intelligence.vercel.app"]);
     expect(hrefs("movie-discovery")).toEqual(["https://movie-app-react-native-project.vercel.app/"]);
     expect(hrefs("dnd-guide")).toEqual(["https://prashastvats1.github.io/dnd-guide", "https://github.com/PrashastVats1/dnd-guide"]);
+  });
+});
+
+describe("Priya demo cold-start note", () => {
+  const NOTE = /free hosting tier, so it may be slow to wake/;
+
+  test("is honest: no exact wait time and no availability promise", () => {
+    const { note } = findArtifact("priya").links[0];
+    expect(note).toMatch(NOTE);
+    expect(note).not.toMatch(/\d|always|guarantee|24\/7|available/i);
+    ARTIFACTS.filter((a) => a.slug !== "priya").forEach((a) => (a.links || []).forEach((l) => expect(l.note).toBeUndefined()));
+  });
+
+  test("sits beside the demo link on the card and the record, describing it", () => {
+    renderAt("#/projects");
+    const demo = within(card("priya")).getByRole("link", { name: /View live demo for Priya/ });
+    expect(document.getElementById(demo.getAttribute("aria-describedby"))).toHaveTextContent(NOTE);
+    expect(within(card("remora")).queryByText(NOTE)).not.toBeInTheDocument();
+  });
+
+  test("appears on Priya's record page", () => {
+    renderAt("#/projects/priya");
+    const demo = screen.getByRole("link", { name: /View live demo/ });
+    expect(document.getElementById(demo.getAttribute("aria-describedby"))).toHaveTextContent(NOTE);
   });
 });

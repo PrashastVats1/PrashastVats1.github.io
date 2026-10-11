@@ -115,11 +115,21 @@ function Proof() {
               <Link to={item.record} aria-label={`Project record for ${item.name}`}>
                 Project record
               </Link>
-              <a href={item.external.href} target="_blank" rel="noreferrer">
+              <a
+                href={item.external.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-describedby={item.external.note ? `pv-bounty-note-${item.slug}` : undefined}
+              >
                 {item.external.label}
                 <span className="pv-visually-hidden"> for {item.name} (opens in a new tab)</span>
               </a>
             </p>
+            {item.external.note && (
+              <p id={`pv-bounty-note-${item.slug}`} className="pv-link-note">
+                {item.external.note}
+              </p>
+            )}
           </li>
         ))}
       </ol>

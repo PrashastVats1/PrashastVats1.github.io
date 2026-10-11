@@ -72,11 +72,17 @@ export default function ArtifactCard({ artifact, headingLevel = 3, eager = false
               rel="noreferrer"
               className="pv-button pv-button--secondary pv-artifact__external"
               aria-label={`${linkLabel(external)} for ${artifact.name} (opens in a new tab)`}
+              aria-describedby={external.note ? `${titleId}-link-note` : undefined}
             >
               <span className="pv-button__label">{linkLabel(external)}</span>
             </a>
           )}
         </div>
+        {external && external.note && (
+          <p id={`${titleId}-link-note`} className="pv-link-note">
+            {external.note}
+          </p>
+        )}
       </div>
     </article>
   );

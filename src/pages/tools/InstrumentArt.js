@@ -1,5 +1,5 @@
 import SafeImage from "../../components/fantasy/SafeImage";
-import { labPath } from "../../assets/manifest";
+import { LAB_WIDTHS, labPath, variantSrcSet } from "../../assets/manifest";
 
 // Recommended size for supplied instrument artwork (4:3); reserves space before it loads.
 export const INSTRUMENT_ART_WIDTH = 1200;
@@ -115,6 +115,8 @@ export default function InstrumentArt({ instrument, className = "" }) {
         path={labPath(instrument.slug)}
         alt=""
         className="pv-instrument-art__image"
+        srcSet={variantSrcSet(labPath(instrument.slug).replace(/\.webp$/, ""), LAB_WIDTHS)}
+        sizes="(max-width: 480px) 160px, 280px"
         width={INSTRUMENT_ART_WIDTH}
         height={INSTRUMENT_ART_HEIGHT}
         loading="lazy"

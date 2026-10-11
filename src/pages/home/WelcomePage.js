@@ -22,6 +22,13 @@ export default function WelcomePage() {
       <p className="pv-welcome__more">
         Also within: the <Link to="/tools">Wizard's Laboratory</Link>, a set of interactive developer tools.
       </p>
+
+      <p className="pv-welcome__hire">
+        <span className="pv-welcome__hire-lead">Seeking an engineer for your quest?</span>{" "}
+        <Link to="/hire" className="pv-welcome__hire-link">
+          Visit Guild Recruitment to hire me
+        </Link>
+      </p>
     </div>
   );
 }

@@ -1,22 +1,22 @@
 import config from "../../config";
+import { RECORD } from "../resume/resumeContent";
+import { HOME_ARTIFACTS, artifactRoute, statusText } from "../projects/artifacts";
 
-// Every professional fact here comes from src/config.js. The only
-// hand-written text is phrasing; summaries paraphrase each project's
-// challenge/solution text in config.
+// Home holds no facts of its own: identity comes from config and the
+// Character Record, projects from the Hall of Artifacts collection.
 
-const experienceStat = config.stats.find((s) => /years experience/i.test(s.label));
-const currentRole = config.experience.find((e) => /present/i.test(e.period));
+const { current } = RECORD;
 
 export const IDENTITY = {
   name: config.name,
   title: config.title,
-  fantasyTitle: "Software Archmage",
+  fantasyTitle: RECORD.fantasyTitle,
   statement: config.tagline,
   facts: [
-    experienceStat && { label: "Experience", value: `${experienceStat.value} years` },
-    currentRole && { label: "Currently", value: `${currentRole.role}, ${currentRole.company}` },
-    { label: "Based in", value: config.location },
-  ].filter(Boolean),
+    { label: "Experience", value: `${RECORD.experience}` },
+    { label: "Currently", value: `${current.title}, ${current.company} (${current.context})` },
+    { label: "Based in", value: RECORD.location },
+  ],
 };
 
 export const SCHOOLS = [
@@ -46,31 +46,11 @@ export const SCHOOLS = [
   },
 ];
 
-/** Every technology string that appears anywhere in config, for accuracy checks. */
-export const KNOWN_TECH = new Set([
-  ...config.skills.flatMap((s) => s.items),
-  ...config.experience.flatMap((e) => e.projects.flatMap((p) => p.tags)),
-  ...config.featuredProjects.flatMap((p) => p.tags),
-]);
-
-const SUMMARIES = {
-  Remora: "A Chrome extension that flags hidden prompt-injection payloads in web pages, the kind that can hijack AI agents browsing on your behalf.",
-  "AI Agent Auth Gateway": "Lets AI agents act for a user through short-lived delegated tokens, policy rules, an audit trail, and human consent before destructive actions.",
-  Priya: "A voice agent that places real outbound calls and handles pricing, competitor, and interest objections in Hindi and English.",
-  "Event Intelligence Dashboard": "Aggregates news from multiple sources into running, LLM-written summaries of the events you follow.",
-};
-
-function splitName(full) {
-  const [name, ...rest] = full.split(" - ");
-  return { name: name.trim(), subtitle: rest.join(" - ").trim() || null };
-}
-
-export const ARTIFACTS = config.featuredProjects.map((project) => {
-  const { name, subtitle } = splitName(project.name);
-  return {
-    name,
-    subtitle,
-    status: project.badge.replace(/^[^A-Za-z0-9]+/, "").trim(),
-    summary: SUMMARIES[name] || project.solution,
-  };
-});
+export const ARTIFACTS = HOME_ARTIFACTS.map((artifact) => ({
+  slug: artifact.slug,
+  name: artifact.name,
+  subtitle: artifact.subtitle || null,
+  status: statusText(artifact),
+  summary: artifact.shortDescription,
+  route: artifactRoute(artifact.slug),
+}));

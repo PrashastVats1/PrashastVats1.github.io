@@ -1,4 +1,5 @@
 import SafeImage from "../../components/fantasy/SafeImage";
+import { ARTIFACT_WIDTHS, variantSrcSet } from "../../assets/manifest";
 
 // Intrinsic size of the supplied artwork (5:4); reserves space before it loads.
 export const ARTWORK_WIDTH = 1402;
@@ -48,6 +49,8 @@ export default function ArtifactArt({ artifact, eager = false }) {
         path={artwork.src}
         alt={artwork.alt || ""}
         className="pv-artifact-art__image"
+        srcSet={artwork.src ? variantSrcSet(artwork.src.replace(/\.webp$/, ""), ARTIFACT_WIDTHS) : undefined}
+        sizes="(max-width: 480px) 90vw, 450px"
         width={ARTWORK_WIDTH}
         height={ARTWORK_HEIGHT}
         loading={eager ? "eager" : "lazy"}

@@ -1,8 +1,10 @@
 /*
  * Runs before start/build/test.
  *
- * 1. Mirrors the owner-supplied avatar/ folder into public/avatar/ so the
- *    app can serve it. avatar/ is only ever read, never written.
+ * 1. Mirrors the web-ready (WebP/AVIF/SVG) files from the owner-supplied
+ *    avatar/ folder into public/avatar/ so the app can serve them. The PNG
+ *    originals stay in avatar/ and are not published. avatar/ is only ever
+ *    read, never written.
  * 2. Writes src/generated/assetManifest.js listing every file that exists
  *    under public/assets/ and public/avatar/, so components can render a
  *    designed fallback instead of requesting (and 404ing on) missing art.
@@ -16,7 +18,7 @@ const avatarTarget = path.join(root, "public", "avatar");
 const publicDir = path.join(root, "public");
 const manifestFile = path.join(root, "src", "generated", "assetManifest.js");
 
-const IMAGE_EXT = /\.(png|jpe?g|webp|gif|svg|avif)$/i;
+const WEB_IMAGE_EXT = /\.(webp|svg|avif)$/i;
 const IGNORED = new Set([".gitkeep", ".DS_Store", "Thumbs.db"]);
 
 function listFiles(dir) {
@@ -31,7 +33,7 @@ function listFiles(dir) {
 function syncAvatars() {
   fs.mkdirSync(avatarTarget, { recursive: true });
   const sources = fs.existsSync(avatarSource)
-    ? fs.readdirSync(avatarSource).filter((name) => IMAGE_EXT.test(name))
+    ? fs.readdirSync(avatarSource).filter((name) => WEB_IMAGE_EXT.test(name))
     : [];
 
   for (const name of fs.readdirSync(avatarTarget)) {

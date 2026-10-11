@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "../App";
 import config from "../config";
-import { KNOWN_TECH } from "../pages/home/homeContent";
+import { KNOWN_TECH } from "../testFixtures/knownTech";
 import { entryMatch } from "../pages/resume/abilityMatch";
 import { ABILITIES, ALL_ENTRIES, SKILL_GROUPS } from "../pages/resume/resumeContent";
 import { TRANSITION_TIMINGS } from "../transition/transitionConfig";

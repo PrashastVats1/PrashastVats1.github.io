@@ -131,21 +131,17 @@ describe("audio", () => {
   beforeEach(() => jest.useFakeTimers());
   afterEach(() => jest.useRealTimers());
 
-  test("does not autoplay", () => {
+  test("stays off when no soundscape is published", () => {
     renderAt("#/home");
     const button = screen.getByRole("button", { name: /Play ambience/ });
     expect(button).toHaveAttribute("aria-pressed", "false");
   });
 
-  test("play state persists across navigation", () => {
+  test("is disabled with an explanation when no soundscape is published", () => {
     renderAt("#/home");
-    fireEvent.click(screen.getByRole("button", { name: /Play ambience/ }));
-    expect(screen.getByRole("button", { name: /Stop ambience/ })).toHaveAttribute("aria-pressed", "true");
-
-    fireEvent.click(navLink("Hall of Artifacts"));
-    finishTransition("full");
-    expect(heading()).toHaveTextContent("Hall of Artifacts");
-    expect(screen.getByRole("button", { name: /Stop ambience/ })).toHaveAttribute("aria-pressed", "true");
+    const button = screen.getByRole("button", { name: /Play ambience/ });
+    expect(button).toBeDisabled();
+    expect(button).toHaveTextContent("Soundscape unavailable");
   });
 });
 
@@ -186,5 +182,36 @@ describe("avatar", () => {
     renderAt("#/home");
     expect(screen.getByRole("img", { name: "Prashast Vats as a software archmage" }).tagName.toLowerCase()).toBe("svg");
     expect(document.querySelector("img")).toBeNull();
+  });
+});
+
+describe("keyboard access", () => {
+  beforeEach(() => jest.useFakeTimers());
+  afterEach(() => jest.useRealTimers());
+
+  test("the skip link is first and moves focus to the main content without changing the route", () => {
+    renderAt("#/projects");
+    const focusable = document.querySelectorAll("a[href], button:not([disabled])");
+    const skip = screen.getByRole("link", { name: "Skip to content" });
+    expect(focusable[0]).toBe(skip);
+    fireEvent.click(skip);
+    expect(document.getElementById("main-content")).toHaveFocus();
+    expect(window.location.hash).toBe("#/projects");
+  });
+
+  test("after navigating, focus lands on the main content", () => {
+    renderAt("#/home");
+    fireEvent.click(navLink("Guild Recruitment"));
+    finishTransition("full");
+    expect(document.getElementById("main-content")).toHaveFocus();
+  });
+
+  test("every page keeps the sound control as a real, named button", () => {
+    ["#/home", "#/resume", "#/projects", "#/tools", "#/blog", "#/hire"].forEach((hash) => {
+      const { unmount } = renderAt(hash);
+      const region = screen.getByRole("region", { name: "Sound" });
+      expect(within(region).getByRole("button")).toHaveAccessibleName(/ambience/);
+      unmount();
+    });
   });
 });

@@ -10,6 +10,9 @@ import { artifactPath } from "../../assets/manifest";
  * install counts (owner's choice), and projects with too little verified
  * detail to describe.
  *
+ * A link may carry a `note` shown beside it (e.g. a demo on a sleeping free
+ * host). Notes describe behaviour only; they never promise availability.
+ *
  * `accent`, `monogram`, and `artwork` are presentation only. Artwork alt text
  * describes the picture, never the project, and the monogram labels the
  * placeholder shown while the artwork loads or if it is missing.
@@ -132,7 +135,13 @@ export const ARTIFACTS = [
     ],
     technologies: ["Python", "FastAPI", "Retell AI", "Vobiz", "SIP/PSTN", "React", "Render"],
     results: ["Winner, Voice Agent Jam 3.0 (Bangalore, May 2026), built and shipped solo against team entries."],
-    links: [{ kind: "demo", href: "https://voice-agent-nubn.onrender.com" }],
+    links: [
+      {
+        kind: "demo",
+        href: "https://voice-agent-nubn.onrender.com",
+        note: "The demo runs on a free hosting tier, so it may be slow to wake on the first visit.",
+      },
+    ],
     artwork: {
       src: artifactPath("priya-voice-agent"),
       alt: "Priya's artifact: a brass gramophone horn glowing pink, encircled by sound waves and speech bubbles.",
@@ -229,6 +238,15 @@ export const artifactRoute = (slug) => `/projects/${slug}`;
 export function findArtifact(slug) {
   return ARTIFACTS.find((a) => a.slug === slug) || null;
 }
+
+// The Home spellbook previews these four, in this order.
+export const HOME_ARTIFACTS = ["remora", "ai-agent-auth-gateway", "priya", "event-intelligence"].map(findArtifact);
+
+/** "Winner, Voice Agent Jam 3.0" / "Open source". */
+export const statusText = (artifact) => {
+  const { label } = STATUSES[artifact.status];
+  return artifact.statusDetail ? `${label}, ${artifact.statusDetail}` : label;
+};
 
 /** "/projects/remora" -> "remora"; "/projects" -> null. */
 export function slugFromPath(path) {

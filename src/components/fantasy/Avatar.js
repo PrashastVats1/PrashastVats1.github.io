@@ -1,4 +1,4 @@
-import { AVATAR_FILES } from "../../assets/manifest";
+import { AVATAR_FILES, AVATAR_VARIANT_STEMS, AVATAR_WIDTHS, variantSrcSet } from "../../assets/manifest";
 import SafeImage from "./SafeImage";
 
 const SIZES = { sm: 44, md: 96, lg: 168 };
@@ -44,6 +44,8 @@ export default function Avatar({ variant = "regular", size = "md", alt, classNam
         path={AVATAR_FILES[variant]}
         alt={label}
         className="pv-avatar__image"
+        srcSet={variantSrcSet(AVATAR_VARIANT_STEMS[variant], AVATAR_WIDTHS)}
+        sizes={`${px}px`}
         width={px}
         height={px}
         fallback={<AvatarCrest variant={variant} label={label} />}

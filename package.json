@@ -6,7 +6,6 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.0",
     "react-scripts": "5.0.1"
   },
   "scripts": {
@@ -16,9 +15,7 @@
     "prebuild": "npm run prepare-assets",
     "build": "react-scripts build",
     "pretest": "npm run prepare-assets",
-    "test": "react-scripts test",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "react-scripts test"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.17.0",
