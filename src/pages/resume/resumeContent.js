@@ -104,9 +104,9 @@ export const CONSULTING = [
             areas: ["Delegated authority"],
           },
           {
-            text: "Implemented RFC 8693 token exchange with short-lived delegation JWTs, policy middleware, audit logging, and human approval for destructive operations.",
+            text: "Implemented a custom delegated-token exchange inspired by RFC 8693, with short-lived delegation JWTs, policy middleware, audit logging, and human approval for destructive operations. The design follows the RFC's token-exchange idea, not its wire format.",
             tech: ["JWT"],
-            areas: ["RFC 8693 token exchange"],
+            areas: ["Delegated token exchange"],
           },
           {
             text: "Built the React + Tailwind dashboard for agent configuration, policies, consent approvals, and audit logs.",
@@ -219,6 +219,42 @@ export const PROJECTS = [
     ],
     stack: ["React Native", "Expo", "Appwrite"],
   },
+  {
+    id: "kalpi-trade-execution",
+    company: "Kalpi Portfolio Trade Execution Engine",
+    title: "Broker-adapter portfolio execution",
+    dates: "2026",
+    status: "Open source, engineering demonstration",
+    groups: [
+      {
+        items: [
+          {
+            text: "Built a Python/FastAPI assignment demonstration for first-time portfolio creation and explicit rebalance instructions through normalized broker adapters. Live broker execution is disabled by default; the five real adapters are contract-tested, not live-certified.",
+            tech: ["Python", "FastAPI", "PostgreSQL"],
+          },
+        ],
+      },
+    ],
+    stack: ["Python", "FastAPI", "PostgreSQL", "Alembic", "Docker"],
+  },
+  {
+    id: "re-jardinians",
+    company: "Re-Jardinians!",
+    title: "Original garden brick-breaker",
+    dates: "2026",
+    status: "Open source, personal game",
+    groups: [
+      {
+        items: [
+          {
+            text: "Designed and built an original offline garden-themed brick-breaker in Godot 4.7.2 with GDScript, including a plugin-free deterministic headless test suite. Built for personal and family play, not for sale.",
+            tech: ["Godot 4.7.2", "GDScript"],
+          },
+        ],
+      },
+    ],
+    stack: ["Godot 4.7.2", "GDScript"],
+  },
 ];
 
 /** Technical skills, grouped exactly as on the resume. */
@@ -289,7 +325,7 @@ export const ABILITIES = [
   {
     id: "security",
     label: "Security & Identity",
-    matches: ["Delegated authority", "RFC 8693 token exchange", "JWT", "Prompt-injection detection"],
+    matches: ["Delegated authority", "Delegated token exchange", "JWT", "Prompt-injection detection"],
   },
   { id: "automation", label: "Automation & Testing", matches: ["Selenium", "Test automation", "Browser automation"] },
   { id: "deployment", label: "Docker & Deployment", matches: ["Docker", "Linux", "Render", "Vercel"] },

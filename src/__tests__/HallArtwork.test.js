@@ -36,10 +36,16 @@ const sceneImage = () => document.querySelector(".pv-hall-scene img");
 test("each card shows its own artwork with descriptive alt text and its real size reserved", () => {
   renderAt("#/projects");
   ARTIFACTS.forEach((artifact) => {
+    expect(artifact.artwork.alt.startsWith(`${artifact.name}'s artifact: `)).toBe(true);
     const img = cardImage(artifact.slug);
+    if (!EXPECTED_FILES[artifact.slug]) {
+      expect(img).toBeNull();
+      const placeholder = document.querySelector(`article[data-artifact="${artifact.slug}"] svg[data-placeholder="true"]`);
+      expect(placeholder).toHaveTextContent(artifact.monogram);
+      return;
+    }
     expect(img).toHaveAttribute("src", EXPECTED_FILES[artifact.slug]);
     expect(img).toHaveAttribute("alt", artifact.artwork.alt);
-    expect(artifact.artwork.alt.startsWith(`${artifact.name}'s artifact: `)).toBe(true);
     expect(img).toHaveAttribute("width", "1402");
     expect(img).toHaveAttribute("height", "1122");
     expect(img).toHaveAttribute("decoding", "async");
@@ -57,6 +63,10 @@ test("featured artwork loads first; the collection loads lazily but stays render
   });
   COLLECTION.forEach((a) => {
     const img = cardImage(a.slug);
+    if (!EXPECTED_FILES[a.slug]) {
+      expect(img).toBeNull();
+      return;
+    }
     expect(img).toHaveAttribute("loading", "lazy");
     // A `hidden` lazy image is never requested, so loading state is a data attribute instead.
     expect(img).not.toHaveAttribute("hidden");

@@ -53,9 +53,10 @@ export const ARTIFACTS = [
       "Published the detection engine as a standalone npm package, remora-engine, alongside a dedicated product site.",
     ],
     approach: [
-      "Dual-signal detection: eight structural detectors inspect the DOM, but a structural hit alone never fires.",
-      "The extracted text must also match one of 25 injection patterns across 5 categories, which keeps false positives down.",
-      "The popup UI is isolated in Shadow DOM, and the project is tested with a Vitest suite.",
+      "Dual-signal detection: eight structural detectors inspect the DOM for hiding techniques, but a structural hit alone never fires.",
+      "The extracted text must also match a known injection phrase from five attack categories, which keeps false positives down.",
+      "On a finding, a blocking overlay waits for a human to acknowledge the risk. An agent that cannot click is left blocked, and a desktop notification fires when the timer expires.",
+      "The popup UI is isolated in Shadow DOM, and the detection engine is tested with a 49-case Vitest suite. A planned remora-backend scan service is not part of this release.",
     ],
     technologies: ["TypeScript", "Chrome Extensions (MV3)", "Shadow DOM", "Vitest", "npm"],
     results: [
@@ -90,13 +91,14 @@ export const ARTIFACTS = [
       "Agents acting on a user's behalf need to prove both their own identity and the user's, while staying constrained, audited, and stoppable before destructive actions.",
     work: [
       "Built an open-source delegated-authority system that lets AI agents act on behalf of users while keeping agent and user identities separate.",
-      "Built the React + Tailwind dashboard for agent configuration, policies, consent approvals, and audit logs.",
+      "Built the React + Tailwind dashboard for agent registration, policy configuration, consent approval, and audit history.",
     ],
     approach: [
-      "Implements RFC 8693 token exchange, minting short-lived delegation JWTs that carry both identities.",
-      "Policy middleware enforces per-agent endpoint, method, and time-window rules, with a full audit trail.",
-      "Destructive operations wait for human approval before they run.",
-      "Login uses OIDC Authorization Code with PKCE, end to end.",
+      "Implements a custom delegated-token exchange inspired by RFC 8693, minting short-lived JWTs that name both the user and the agent. It does not use that RFC's wire format.",
+      "Per-agent policy covers endpoints, HTTP methods, days, and IST time windows. An agent with no policy is denied.",
+      "Destructive scopes wait for user consent before they are issued on a token.",
+      "Every allow, rejection, consent action, and token issuance is written to an audit log.",
+      "Login uses OIDC Authorization Code with PKCE.",
     ],
     technologies: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "React", "Vite", "Tailwind", "Render", "Vercel"],
     links: [
@@ -145,6 +147,37 @@ export const ARTIFACTS = [
     artwork: {
       src: artifactPath("priya-voice-agent"),
       alt: "Priya's artifact: a brass gramophone horn glowing pink, encircled by sound waves and speech bubbles.",
+    },
+  },
+  {
+    slug: "kalpi-trade-execution",
+    name: "Kalpi Portfolio Trade Execution Engine",
+    subtitle: "Broker-adapter portfolio execution",
+    status: "open-source",
+    statusDetail: "Engineering demonstration",
+    year: "2026",
+    category: "Backend systems",
+    featured: false,
+    accent: "forest",
+    monogram: "K",
+    shortDescription:
+      "A Python/FastAPI engine for first-time portfolio creation and explicit rebalance instructions, executed through normalized broker adapters.",
+    problem:
+      "A first-time portfolio or an explicit rebalance has to reach a broker as durable, idempotent orders, and still be reconcilable when the broker's response is missing or only part of the batch succeeds.",
+    work: [
+      "Built a public assignment demonstration, not production-ready real-money infrastructure. Live broker execution is disabled by default.",
+      "Implemented first-time portfolio creation and explicit rebalance workflows behind a normalized broker adapter interface.",
+      "Added durable executions and orders, request idempotency, partial-failure handling, UNKNOWN order and RECONCILIATION_REQUIRED execution states, and an explicit reconcile path.",
+    ],
+    approach: [
+      "Five real HTTP-contract adapters (Zerodha, DhanHQ, Angel One, Groww, and Upstox) plus a mock broker for deterministic tests. The real adapters are contract-tested, not live-certified, and no live trades are claimed.",
+      "PostgreSQL, Alembic, Docker, generated OpenAPI, and a test suite covering core workflows and adapter mappings.",
+    ],
+    technologies: ["Python", "FastAPI", "PostgreSQL", "Alembic", "Docker", "OpenAPI"],
+    links: [{ kind: "source", href: "https://github.com/PrashastVats1/broker_trade_execution_engine" }],
+    artwork: {
+      src: artifactPath("kalpi-trade-execution"),
+      alt: "Kalpi Portfolio Trade Execution Engine's artifact: a brass ledger and balance-scale on a forest-green plinth, with five sealed broker seals in orbit.",
     },
   },
   {
@@ -228,6 +261,33 @@ export const ARTIFACTS = [
       alt: "D&D Beginner Guide's artifact: an open illustrated tome surrounded by floating dice and maps.",
     },
   },
+  {
+    slug: "re-jardinians",
+    name: "Re-Jardinians!",
+    subtitle: "An original garden brick-breaker",
+    status: "open-source",
+    statusDetail: "Personal game",
+    year: "2026",
+    category: "Game",
+    featured: false,
+    accent: "ember",
+    monogram: "RJ",
+    shortDescription:
+      "An original offline garden-themed brick-breaker, built in Godot for personal and family play rather than sale.",
+    work: [
+      "Designed and built the paddle, ball, bricks, gameplay, and UI in GDScript, with no plugins or external dependencies.",
+      "Shipped a plugin-free deterministic test suite that runs headless at a fixed 60 FPS against a 1280×720 logical canvas.",
+    ],
+    approach: [
+      "Godot 4.7.2 Standard. The shipped scene plays a development level, Test Garden; there is no public playable build.",
+    ],
+    technologies: ["Godot 4.7.2", "GDScript"],
+    links: [{ kind: "source", href: "https://github.com/PrashastVats1/Re-Jardininans" }],
+    artwork: {
+      src: artifactPath("re-jardinians"),
+      alt: "Re-Jardinians!'s artifact: a clay garden pot of bricks on an ember plinth, with a wooden paddle and a hovering ball.",
+    },
+  },
 ];
 
 export const FEATURED = ARTIFACTS.filter((a) => a.featured);
@@ -240,7 +300,7 @@ export function findArtifact(slug) {
 }
 
 // The Home spellbook previews these four, in this order.
-export const HOME_ARTIFACTS = ["remora", "ai-agent-auth-gateway", "priya", "event-intelligence"].map(findArtifact);
+export const HOME_ARTIFACTS = ["remora", "ai-agent-auth-gateway", "priya", "kalpi-trade-execution"].map(findArtifact);
 
 /** "Winner, Voice Agent Jam 3.0" / "Open source". */
 export const statusText = (artifact) => {

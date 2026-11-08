@@ -51,9 +51,17 @@ describe("the Hall", () => {
     const featured = screen.getByRole("heading", { name: "The Featured Wing" }).closest("section");
     const collection = screen.getByRole("heading", { name: "The Collection" }).closest("section");
     ["remora", "ai-agent-auth-gateway", "priya"].forEach((slug) => expect(featured).toContainElement(card(slug)));
-    ["event-intelligence", "movie-discovery", "dnd-guide"].forEach((slug) => expect(collection).toContainElement(card(slug)));
+    ["kalpi-trade-execution", "event-intelligence", "movie-discovery", "dnd-guide", "re-jardinians"].forEach((slug) =>
+      expect(collection).toContainElement(card(slug))
+    );
     expect(FEATURED.map((a) => a.slug)).toEqual(["remora", "ai-agent-auth-gateway", "priya"]);
-    expect(COLLECTION).toHaveLength(3);
+    expect(COLLECTION.map((a) => a.slug)).toEqual([
+      "kalpi-trade-execution",
+      "event-intelligence",
+      "movie-discovery",
+      "dnd-guide",
+      "re-jardinians",
+    ]);
   });
 
   test("each card shows its name, description, status, year and category", () => {
@@ -74,6 +82,10 @@ describe("the Hall", () => {
     expect(status("ai-agent-auth-gateway")).toBe("open-source");
     expect(status("priya")).toBe("winner");
     expect(findArtifact("priya").statusDetail).toBe("Voice Agent Jam 3.0");
+    expect(status("kalpi-trade-execution")).toBe("open-source");
+    expect(findArtifact("kalpi-trade-execution").statusDetail).toBe("Engineering demonstration");
+    expect(status("re-jardinians")).toBe("open-source");
+    expect(findArtifact("re-jardinians").statusDetail).toBe("Personal game");
     ["event-intelligence", "movie-discovery", "dnd-guide"].forEach((slug) => expect(status(slug)).toBe("live"));
 
     renderAt("#/projects");
@@ -280,7 +292,20 @@ describe("navigation", () => {
 describe("content accuracy", () => {
   // Technologies named in the owner's Phase 4 project summaries or the projects'
   // public listings rather than in config or the resume skills.
-  const SUPPLIED_TECH = new Set(["Vitest", "npm", "NewsAPI", "TMDB API", "Vobiz", "Expo", "GitHub Pages", "Tailwind"]);
+  const SUPPLIED_TECH = new Set([
+    "Vitest",
+    "npm",
+    "NewsAPI",
+    "TMDB API",
+    "Vobiz",
+    "Expo",
+    "GitHub Pages",
+    "Tailwind",
+    "Alembic",
+    "OpenAPI",
+    "Godot 4.7.2",
+    "GDScript",
+  ]);
   const resumeSkills = new Set(SKILL_GROUPS.flatMap((g) => g.items));
 
   test("every artifact has the required fields and no placeholder copy", () => {
@@ -342,6 +367,24 @@ describe("content accuracy", () => {
     expect(hrefs("event-intelligence")).toEqual(["https://ai-event-intelligence.vercel.app"]);
     expect(hrefs("movie-discovery")).toEqual(["https://movie-app-react-native-project.vercel.app/"]);
     expect(hrefs("dnd-guide")).toEqual(["https://prashastvats1.github.io/dnd-guide", "https://github.com/PrashastVats1/dnd-guide"]);
+    expect(hrefs("kalpi-trade-execution")).toEqual(["https://github.com/PrashastVats1/broker_trade_execution_engine"]);
+    expect(hrefs("re-jardinians")).toEqual(["https://github.com/PrashastVats1/Re-Jardininans"]);
+  });
+
+  test("the Auth Gateway describes a custom exchange inspired by RFC 8693, not the RFC wire format", () => {
+    const gateway = JSON.stringify(findArtifact("ai-agent-auth-gateway"));
+    expect(gateway).toMatch(/custom delegated-token exchange inspired by RFC 8693/);
+    expect(gateway).toMatch(/does not use that RFC's wire format/);
+    expect(gateway).not.toMatch(/Implements RFC 8693 token exchange/);
+  });
+
+  test("Kalpi is an engineering demonstration, not live trading infrastructure", () => {
+    const kalpi = JSON.stringify(findArtifact("kalpi-trade-execution"));
+    expect(kalpi).toMatch(/assignment demonstration/);
+    expect(kalpi).toMatch(/disabled by default/);
+    expect(kalpi).toMatch(/contract-tested, not live-certified/);
+    expect(kalpi).not.toMatch(/successful live trades|live certified/i);
+    expect(kalpi).not.toMatch(/frontend/i);
   });
 });
 

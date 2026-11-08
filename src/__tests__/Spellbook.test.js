@@ -223,7 +223,7 @@ describe("spellbook home: content accuracy", () => {
   });
 
   test("Home previews four projects drawn from the Hall of Artifacts collection", () => {
-    expect(ARTIFACTS.map((a) => a.slug)).toEqual(["remora", "ai-agent-auth-gateway", "priya", "event-intelligence"]);
+    expect(ARTIFACTS.map((a) => a.slug)).toEqual(["remora", "ai-agent-auth-gateway", "priya", "kalpi-trade-execution"]);
     ARTIFACTS.forEach((preview) => {
       const source = COLLECTION_ARTIFACTS.find((a) => a.slug === preview.slug);
       expect(source).toBeTruthy();
@@ -232,7 +232,7 @@ describe("spellbook home: content accuracy", () => {
       expect(preview.status).toBe(statusText(source));
       expect(preview.route).toBe(`/projects/${source.slug}`);
     });
-    // The Hall keeps its own three featured artifacts; Home adds Event Intelligence.
+    // The Hall keeps its own three featured artifacts; Home adds Kalpi.
     expect(FEATURED.map((a) => a.slug)).toEqual(["remora", "ai-agent-auth-gateway", "priya"]);
   });
 

@@ -76,7 +76,7 @@ export const TRADES = [
     text: "Protecting AI agents and the people they act for.",
     evidence: [
       "Published Remora, a Chrome extension that detects hidden prompt-injection payloads aimed at AI agents.",
-      "Built an open-source delegated-authority gateway with RFC 8693 token exchange and human approval for destructive actions.",
+      "Built an open-source delegated-authority gateway with a custom token exchange inspired by RFC 8693 and human approval for destructive actions.",
     ],
   },
 ];
