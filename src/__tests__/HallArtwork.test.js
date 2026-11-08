@@ -9,9 +9,11 @@ jest.mock("../generated/assetManifest", () => ({
     "assets/artifacts/ai-agent-auth-gateway.webp",
     "assets/artifacts/dnd-beginner-guide.webp",
     "assets/artifacts/event-intelligence-dashboard.webp",
+    "assets/artifacts/kalpi.webp",
     "assets/artifacts/movie-discovery-app.webp",
     "assets/artifacts/priya-voice-agent.webp",
     "assets/artifacts/projects.webp",
+    "assets/artifacts/re-jardinians.webp",
     "assets/artifacts/remora.webp",
   ],
 }));
@@ -20,9 +22,11 @@ const EXPECTED_FILES = {
   remora: "/assets/artifacts/remora.webp",
   "ai-agent-auth-gateway": "/assets/artifacts/ai-agent-auth-gateway.webp",
   priya: "/assets/artifacts/priya-voice-agent.webp",
+  "kalpi-trade-execution": "/assets/artifacts/kalpi.webp",
   "event-intelligence": "/assets/artifacts/event-intelligence-dashboard.webp",
   "movie-discovery": "/assets/artifacts/movie-discovery-app.webp",
   "dnd-guide": "/assets/artifacts/dnd-beginner-guide.webp",
+  "re-jardinians": "/assets/artifacts/re-jardinians.webp",
 };
 
 function renderAt(hash) {
@@ -93,6 +97,25 @@ test("the record shows the same artwork, eagerly, and falls back to the placehol
   expect(document.querySelector(".pv-artifact-record img.pv-artifact-art__image")).toBeNull();
   expect(document.querySelector('.pv-artifact-record svg[data-placeholder="true"]')).toBeInTheDocument();
 });
+
+test.each(["kalpi-trade-execution", "re-jardinians"])(
+  "the %s record shows its artwork, eagerly, with reserved dimensions and placeholder fallback",
+  (slug) => {
+    renderAt(`#/projects/${slug}`);
+    const artifact = ARTIFACTS.find((a) => a.slug === slug);
+    const img = document.querySelector(".pv-artifact-record img.pv-artifact-art__image");
+    expect(img).toHaveAttribute("src", EXPECTED_FILES[slug]);
+    expect(img).toHaveAttribute("alt", artifact.artwork.alt);
+    expect(img).toHaveAttribute("loading", "eager");
+    expect(img).toHaveAttribute("width", "1402");
+    expect(img).toHaveAttribute("height", "1122");
+    fireEvent.error(img);
+    expect(document.querySelector(".pv-artifact-record img.pv-artifact-art__image")).toBeNull();
+    const placeholder = document.querySelector('.pv-artifact-record svg[data-placeholder="true"]');
+    expect(placeholder).toBeInTheDocument();
+    expect(placeholder).toHaveTextContent(artifact.monogram);
+  }
+);
 
 test.each(["#/projects", "#/projects/remora", "#/projects/not-a-real-thing"])(
   "the Hall scene is the decorative environment on %s",

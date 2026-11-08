@@ -23,6 +23,14 @@ jest.mock("../generated/assetManifest", () => ({
     "assets/lab/regex-alchemist-320.webp",
     "assets/lab/regex-alchemist-560.webp",
     "assets/artifacts/priya-voice-agent.webp",
+    "assets/artifacts/kalpi.webp",
+    "assets/artifacts/kalpi-480.webp",
+    "assets/artifacts/kalpi-720.webp",
+    "assets/artifacts/kalpi-960.webp",
+    "assets/artifacts/re-jardinians.webp",
+    "assets/artifacts/re-jardinians-480.webp",
+    "assets/artifacts/re-jardinians-720.webp",
+    "assets/artifacts/re-jardinians-960.webp",
   ],
 }));
 
@@ -63,9 +71,25 @@ test("without variants the image falls back to the plain src", () => {
   expect(img).not.toHaveAttribute("srcset");
 });
 
+test("Kalpi and Re-Jardinians list the committed 480/720/960 variants", () => {
+  [
+    ["kalpi-trade-execution", "/assets/artifacts/kalpi"],
+    ["re-jardinians", "/assets/artifacts/re-jardinians"],
+  ].forEach(([slug, stem]) => {
+    const artifact = ARTIFACTS.find((a) => a.slug === slug);
+    const { container } = render(<ArtifactArt artifact={artifact} />);
+    const img = container.querySelector("img");
+    expect(img).toHaveAttribute("src", `${stem}.webp`);
+    expect(img.getAttribute("srcset")).toBe(`${stem}-480.webp 480w, ${stem}-720.webp 720w, ${stem}-960.webp 960w`);
+    expect(img).toHaveAttribute("sizes", "(max-width: 480px) 90vw, 450px");
+    expect(img).toHaveAttribute("width", "1402");
+    expect(img).toHaveAttribute("height", "1122");
+  });
+});
+
 test("every published artwork has its committed variants on disk", () => {
   ARTIFACTS.forEach(({ artwork }) => {
-    if (!fs.existsSync(publicFile(artwork.src))) return;
+    expect(fs.existsSync(publicFile(artwork.src))).toBe(true);
     ARTIFACT_WIDTHS.forEach((w) => {
       expect(fs.existsSync(publicFile(artwork.src.replace(/\.webp$/, `-${w}.webp`)))).toBe(true);
     });
