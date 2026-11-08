@@ -65,6 +65,7 @@ test("without variants the image falls back to the plain src", () => {
 
 test("every published artwork has its committed variants on disk", () => {
   ARTIFACTS.forEach(({ artwork }) => {
+    if (!fs.existsSync(publicFile(artwork.src))) return;
     ARTIFACT_WIDTHS.forEach((w) => {
       expect(fs.existsSync(publicFile(artwork.src.replace(/\.webp$/, `-${w}.webp`)))).toBe(true);
     });

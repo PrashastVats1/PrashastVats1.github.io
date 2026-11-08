@@ -85,7 +85,9 @@ describe("information hierarchy", () => {
     const quests = heading("Independent Quests");
     expect(quests.tagName).toBe("H2");
     const section = quests.closest("section");
-    ["remora", "priya", "event-intelligence", "movie-discovery"].forEach((id) => expect(section).toContainElement(entry(id)));
+    ["remora", "priya", "event-intelligence", "movie-discovery", "kalpi-trade-execution", "re-jardinians"].forEach((id) =>
+      expect(section).toContainElement(entry(id))
+    );
     expect(within(section).getByRole("link", { name: /Hall of Artifacts \(Projects\)/ })).toHaveAttribute("href", "#/projects");
   });
 
@@ -112,7 +114,17 @@ describe("information hierarchy", () => {
 
   test("renders employment, consulting with the resume's anonymized names, and projects", () => {
     renderRecord();
-    ["mphasis", "identity-platform", "byoc-platform", "remora", "priya", "event-intelligence", "movie-discovery"].forEach((id) =>
+    [
+      "mphasis",
+      "identity-platform",
+      "byoc-platform",
+      "remora",
+      "priya",
+      "event-intelligence",
+      "movie-discovery",
+      "kalpi-trade-execution",
+      "re-jardinians",
+    ].forEach((id) =>
       expect(entry(id)).toBeInTheDocument()
     );
     expect(within(entry("identity-platform")).getByRole("heading")).toHaveTextContent("Identity Infrastructure Platform");
@@ -150,8 +162,10 @@ describe("ability filter", () => {
 
     expect(abilityButton("Python")).toHaveAttribute("aria-pressed", "true");
     expect(abilityButton("All abilities")).toHaveAttribute("aria-pressed", "false");
-    expect(document.querySelector(".pv-abilities__count")).toHaveTextContent("Python: 3 of 7 entries reveal this ability.");
-    expect(liveText()).toBe("Python: 3 of 7 entries reveal this ability.");
+    expect(document.querySelector(".pv-abilities__count")).toHaveTextContent(
+      `Python: 4 of ${ALL_ENTRIES.length} entries reveal this ability.`
+    );
+    expect(liveText()).toBe(`Python: 4 of ${ALL_ENTRIES.length} entries reveal this ability.`);
 
     // Only the matching achievements remain, each labelled with why it matches.
     const mphasis = entry("mphasis");
@@ -235,7 +249,7 @@ describe("ability filter", () => {
     document.querySelectorAll("[data-entry]").forEach((el) => expect(el).toHaveAttribute("data-match", "all"));
     expect(abilityButton("All abilities")).toHaveAttribute("aria-pressed", "true");
     expect(abilityButton("All abilities")).toHaveFocus();
-    expect(liveText()).toBe("Showing the full record: all 7 entries.");
+    expect(liveText()).toBe(`Showing the full record: all ${ALL_ENTRIES.length} entries.`);
     expect(screen.queryByRole("button", { name: "Clear filter" })).not.toBeInTheDocument();
   });
 
