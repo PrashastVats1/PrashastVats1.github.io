@@ -176,8 +176,8 @@ export const ARTIFACTS = [
     technologies: ["Python", "FastAPI", "PostgreSQL", "Alembic", "Docker", "OpenAPI"],
     links: [{ kind: "source", href: "https://github.com/PrashastVats1/broker_trade_execution_engine" }],
     artwork: {
-      src: artifactPath("kalpi-trade-execution"),
-      alt: "Kalpi Portfolio Trade Execution Engine's artifact: a brass ledger and balance-scale on a forest-green plinth, with five sealed broker seals in orbit.",
+      src: artifactPath("kalpi"),
+      alt: "Kalpi Portfolio Trade Execution Engine's artifact: a forest-green leather ledger with brass and gold tooling, a bull and candlestick chart on the cover, five floating broker banners, a brass balance scale and hourglass, in a candlelit library.",
     },
   },
   {
@@ -285,7 +285,7 @@ export const ARTIFACTS = [
     links: [{ kind: "source", href: "https://github.com/PrashastVats1/Re-Jardininans" }],
     artwork: {
       src: artifactPath("re-jardinians"),
-      alt: "Re-Jardinians!'s artifact: a clay garden pot of bricks on an ember plinth, with a wooden paddle and a hovering ball.",
+      alt: "Re-Jardinians!'s artifact: a terracotta garden planter with a wooden paddle and a glowing ball, floating coloured bricks with leaf motifs, flowers, ivy, a watering can and garden tools, in an enchanted greenhouse.",
     },
   },
 ];
